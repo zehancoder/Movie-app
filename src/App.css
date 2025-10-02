@@ -2,11 +2,23 @@
 
 @import "tailwindcss";
 
+
+
 @theme {
   --font-manrope: "Manrope", sans-serif;
 }
 
+@theme{
+  --breakpoint-sm: 750px;
+}
+
+#root{
+  z-index: -99;
+  position: absolute;
+}
+
 body {
+  overflow-x: hidden;
   background-color: #1e1e1e;
 }
 
@@ -14,7 +26,22 @@ body {
   @apply text-[14px] md:text-[16px] font-normal px-5 rounded-md py-2;
 }
 
+
+
 .active {
   background-color: black;
   color: white;
+}
+
+.customBg{
+  
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url("/images/heroImg.png");
+}
+
+li{
+  display: none;
 }

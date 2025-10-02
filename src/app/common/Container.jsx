@@ -3,7 +3,7 @@ import { cn } from "../../classReplacer/replacer";
 
 function Container({children, className}) {
   return (
-    <div className={cn('max-w-[1400px] ', className)}>
+    <div className={cn('max-w-[1550px] overflow-hidden ', className)}>
         {
             children
         }
