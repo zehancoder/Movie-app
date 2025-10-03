@@ -12,8 +12,8 @@ function Navber() {
   };
 
   return (
-    <div className="fixed top-0 w-screen z-20">
-      <div className={" mx-auto overflow-x-hidden max-w-[1850px]"}>
+    <div className="fixed top-0 left-0 w-screen z-20 ">
+      <div className=" mx-auto overflow-x-hidden max-w-[1850px] ">
         <div className="md:px-10 px-3 lg:px-24 bg-transparent py-4">
           <nav>
             <div className="flex items-center justify-between ">
