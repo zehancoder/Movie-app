@@ -1,13 +1,13 @@
 import React from 'react'
-import UserContext from './userContext'
+import userContext from './userContext'
 
 function UserContextProvider({children}) {
   return (
-    <UserContext.Provider>
+    <userContext.Provider>
         {
             children
         }
-    </UserContext.Provider>
+    </userContext.Provider>
   )
 }
 
