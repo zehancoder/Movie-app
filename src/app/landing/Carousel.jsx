@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LuMoveLeft } from "react-icons/lu";
-
+import jsonData from '../../data/carouselData.json'
 import { LuMoveRight } from "react-icons/lu";
 import CategoryCard from "../common/CategoryCard";
 
@@ -52,7 +52,6 @@ function CarouselMaker() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 2,
-    autoplay: true,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -109,30 +108,30 @@ function CarouselMaker() {
     ],
   };
 
-  const text = [
-    "Action & Adventure",
-    "Animation",
-    "Comedy",
-    "Crime",
-    "Documentary",
-    "Drama",
-    "Family",
-    "Kids",
-    "Mystry",
-    "News",
-    "Reality",
-    "Sci-fi & Fantasy",
-    "Swap",
-    "Talk",
-    "War & Policies",
-    "Western",
-  ];
+  // const text = [
+  //   "Action & Adventure",
+  //   "Animation",
+  //   "Comedy",
+  //   "Crime",
+  //   "Documentary",
+  //   "Drama",
+  //   "Family",
+  //   "Kids",
+  //   "Mystry",
+  //   "News",
+  //   "Reality",
+  //   "Sci-fi & Fantasy",
+  //   "Swap",
+  //   "Talk",
+  //   "War & Policies",
+  //   "Western",
+  // ];
 
   return (
-    <div className="slider-container list-none p-5 w-full mx-auto">
+    <div className="slider-container list-none p-2 md:p-3 w-full mx-auto">
       <Slider {...settings}>
-        {text.map((text) => {
-          return <CategoryCard text={text} />;
+        {jsonData.map(({text, img1, img2, img3, img4}) => {
+          return <CategoryCard text={text} img1={img1} img2={img2} img3={img3} img4={img4}/>;
         })}
       </Slider>
     </div>

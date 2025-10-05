@@ -6,6 +6,7 @@ import Heading from "../common/Heading";
 import Section2 from "./Section2";
 import ParagraphText from "../common/ParagraphText";
 import { Route, Routes } from "react-router-dom";
+import Section3 from "./Section3";
 
 function LandingPage() {
   return (
@@ -16,7 +17,7 @@ function LandingPage() {
       >
         <Container className={"overflow-x-hidden"}>
           <div className="absolute w-full flex items-center justify-center font-manrope bottom-16 md:bottom-24 text-center z-50">
-            <div className="max-w-5xl ">
+            <div className="max-w-5xl px-3">
               <Heading className={"md:text-3xl text-2xl lg:text-[56px]"}>
                 The Best Straming Experience
               </Heading>
@@ -42,7 +43,7 @@ function LandingPage() {
       </div>
 
       <Section2 />
-
+      <Section3/>
 
       <Routes>
         <Route path=""/>

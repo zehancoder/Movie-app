@@ -2,46 +2,42 @@
 
 @import "tailwindcss";
 
-
-
 @theme {
   --font-manrope: "Manrope", sans-serif;
 }
 
-@theme{
+@theme {
   --breakpoint-sm: 750px;
 }
 
-#root{
+#root {
   z-index: -99;
   position: absolute;
 }
 
 body {
   overflow-x: hidden;
-  background-color: #1e1e1e;
+  background-color: #141414;
 }
 
 .links {
   @apply text-[14px] md:text-[16px] font-normal px-5 rounded-md py-2;
 }
 
-
-
 .active {
   background-color: black;
   color: white;
 }
 
-.customBg{
-  
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.5)
-    ),
+.customBg {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
     url("/images/heroImg.png");
 }
 
-li{
+.cardCustomBg {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+}
+
+li {
   display: none;
 }

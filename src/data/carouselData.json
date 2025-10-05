@@ -1,0 +1,73 @@
+[
+  {
+    "img1": "/images/movieCategory/action (1).png",
+    "img2": "/images/movieCategory/action (2).png",
+    "img3": "/images/movieCategory/action (3).png",
+    "img4": "/images/movieCategory/action (4).png",
+    "text": "Action & Adventure"
+  },
+  {
+    "img1": "/images/movieCategory/adventure (1).png",
+    "img2": "/images/movieCategory/adventure (2).png",
+    "img3": "/images/movieCategory/adventure (3).png",
+    "img4": "/images/movieCategory/adventure (4).png",
+    "text": "Adventure"
+  },
+  {
+    "img1": "/images/movieCategory/comedy (1).png",
+    "img2": "/images/movieCategory/comedy (2).png",
+    "img3": "/images/movieCategory/comedy (3).png",
+    "img4": "/images/movieCategory/comedy (4).png",
+    "text": "Comedy"
+  },
+  {
+    "img1": "/images/movieCategory/drama (1).png",
+    "img2": "/images/movieCategory/drama (2).png",
+    "img3": "/images/movieCategory/drama (3).png",
+    "img4": "/images/movieCategory/drama (4).png",
+    "text": "Drama"
+  },
+  {
+    "img1": "/images/movieCategory/horror (1).png",
+    "img2": "/images/movieCategory/horror (2).png",
+    "img3": "/images/movieCategory/horror (3).png",
+    "img4": "/images/movieCategory/horror (4).png",
+    "text": "Horror"
+  },
+
+  {
+    "img1": "https://akamaividz2.zee5.com/image/upload/w_336,h_504,c_scale,f_webp,q_auto:eco/resources/0-0-1z5629027/portrait/1920x77057956d5e77a04628ad97d548ff2883a3cc12a467a3fd4a4ba6335c6d715af8a0.jpg",
+    "img2": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReb5IMa0DRsCX034mTweO0O0UcCW2EVRHygZ5kNLyMsssgh2z0s6xLdmHVZsV5izwPnrw&usqp=CAU",
+    "img3": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqapAj0kradLqqiXqsE5YUs92Q-iVegH7w-E7DovHMRilzjKi3EqWUu6wp4jhq1wXl06c&usqp=CAU",
+    "img4": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgD4oflOBmCNMpl6B75WvzloNtzsOPc3hc9A&s",
+    "text": "Mystry"
+  },
+  {
+    "img1": "https://bingeddata.s3.amazonaws.com/uploads/2025/05/criminal-justice-season-4-series-review-768x576.jpg",
+    "img2": "https://i.ytimg.com/vi/nBmS4ptwU-4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA4sO978wgWUOcOcNam0uWpa49Ivg",
+    "img3": "https://i.ytimg.com/vi/EbQDRWLtFRE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBnXusKNtBZvDHVQmC2qCItE2TppA",
+    "img4": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8EWRvgp77_hdmaRGNTdt3SISHvdhFLEApGIDYbl3a1dJh4IIhasIgewkNla-Td01Nk9o&usqp=CAU",
+    "text": "Crime"
+  },
+  {
+    "img1": "https://upload.wikimedia.org/wikipedia/en/e/ef/Family_%282006_film%29.jpg",
+    "img2": "https://images.indianexpress.com/2023/11/Falimy-movie-review-17112023.jpg",
+    "img3": "https://i.ytimg.com/vi/TpjMb0ip5P8/maxresdefault.jpg",
+    "img4": "https://m.media-amazon.com/images/M/MV5BODUzMmUzMDQtZWJmMC00YTRiLThlZGEtN2Y5MzAwZTBhZDdiXkEyXkFqcGc@._V1_.jpg",
+    "text": "Family"
+  },
+  {
+    "img1": "https://hips.hearstapps.com/hmg-prod/images/kids-movies-2020-over-the-moon-1606838998.jpg",
+    "img2": "https://hips.hearstapps.com/hmg-prod/images/kids-movies-disney-plus-5-1634746192.jpg",
+    "img3": "https://resizing.flixster.com/e_iodxiHYX8c6uKCAd6FS16OIFE=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2NkNWEyMWIzLWZmMjItNGVhOC1iOTA0LWQzNTQ0MDE0ZDExZC5qcGc=",
+    "img4": "https://i.ytimg.com/vi/QOM0Tnr0kcI/maxresdefault.jpg",
+    "text": "Kids"
+  },
+  {
+    "img1": "https://bsmedia.business-standard.com/_media/bs/img/article/2025-07/25/full/1753434997-5971.png",
+    "img2": "https://m.media-amazon.com/images/M/MV5BNGFjYTZmYjEtZDI3MS00MGVhLWI5NDQtY2QwZTcwNjUwMTA2XkEyXkFqcGc@._V1_.jpg",
+    "img3": "https://resizing.flixster.com/1eHwSs4Hsk8dmj_7g_HOVkw8x6U=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzRiZTU3MTJhLTA4NjgtNDViYS05YTRlLWUzODcwMGExZWNlZC5qcGc=",
+    "img4": "https://www.hindustantimes.com/ht-img/img/2025/08/18/1600x900/GynyfKRXoAAkUEZ_1755512419845_1755512439305.jpg",
+    "text": "War & Policies"
+  }
+]

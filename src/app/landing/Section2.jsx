@@ -8,11 +8,11 @@ import CarouselMaker from "./Carousel";
 
 function Section2() {
   return (
-    <div className="w-[100vw] bg-[#1e1e1e] py-5 z-30 overflow-x-hidden">
+    <div className="w-[100vw] bg-[#141414] py-5 px-0 md:px-3 z-30 overflow-x-hidden">
       <Container className={"mx-auto"}>
         <div className="md:py-10 sm:py-8 py-6 lg:py-14">
           <div className="flex items-center justify-between">
-            <div>
+            <div className="md:px-0 px-2">
               <Heading className={"font-medium"}>
                 Explore our wide variety of categories
               </Heading>
