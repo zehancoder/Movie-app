@@ -11,11 +11,20 @@ function Navber() {
     setShowSearch(!showSearch);
   };
 
+  window.addEventListener('scroll', (e) => {
+    console.log(window.scrollY)
+    if(window.scrollY > 200){
+      document.querySelector('.navMain').style.backgroundColor = "#141414"
+    }else{
+      document.querySelector('.navMain').style.backgroundColor = "transparent"
+    }
+  })
+
   return (
-    <div className="fixed top-0 left-0 w-screen z-20 ">
+    <div className="fixed top-0 left-0 w-screen z-20 navMain">
       <div className=" mx-auto overflow-x-hidden max-w-[1850px] ">
-        <div className="md:px-10 px-3 lg:px-24 bg-transparent py-4">
-          <nav>
+        <div className="md:px-10 px-3 lg:px-24  py-4 ">
+          <nav >
             <div className="flex items-center justify-between ">
               <Link to={"/"}>
                 <img src="/images/Logo.png" className="w-auto" alt="" />
@@ -84,12 +93,12 @@ function Navber() {
             </div>
           </nav>
 
-          <div className="flex items-center justify-end w-full">
+          <div className="absolute right-8 -bottom-14">
             <input
               type="text"
               placeholder="Movie Name"
               className={`${
-                showSearch ? setTimeout(() => "scale-100", 1000) : "scale-x-0 "
+                showSearch ? "scale-x-100" : "scale-x-0 "
               } links text-[15px] outline-none border-1 border-[#e50000] rounded-lg mt-2 text-white font-manrope w-auto lg:w-[450px] font-normal transition duration-300 origin-right `}
             />
           </div>

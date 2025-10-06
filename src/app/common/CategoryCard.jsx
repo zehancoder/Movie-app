@@ -1,5 +1,7 @@
 import React from 'react'
 import jsonData from "../../data/carouselData.json"
+import { FaArrowRight } from "react-icons/fa6";
+
 function CategoryCard({text, img1, img2, img3, img4}) {
   return (
     <div className='m-3 cursor-pointer  border border-[#383838] rounded-xl'>
@@ -16,7 +18,10 @@ function CategoryCard({text, img1, img2, img3, img4}) {
               </div>
               
             </div>
-            <p className='text-center mt-10 text-white font-medium md:text-[17px] text-[15px] lg:text-xl'>{text}</p>
+            <div className='flex items-center justify-between mt-10'>
+              <p className='text-center  text-white font-medium md:text-[17px] text-[15px] lg:text-xl'>{text}</p>
+              <FaArrowRight className='text-white text-2xl font-medium'/>
+            </div>
         </div>
     </div>
   )
