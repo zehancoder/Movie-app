@@ -17,7 +17,7 @@ function SampleNextArrow(props) {
       id="arrows"
       className="absolute right-5 cursor-pointer -top-5 md:-top-7 transform -translate-[50%] z-10 opacity-80"
     >
-      <div className="text-white rounded-lg bg-[#2e2e2e] px-3 md:px-5 py-1.5 md:py-3">
+      <div className="text-white rounded-lg bg-[#2e2e2e] px-3 md:px-5 py-1.5 md:py-3 carouselArrowEffect">
         <LuMoveRight className="cursor-pointer md:text-xl text-xl lg:text-2xl " />
       </div>
       <div className={className} style={{ display: "none" }}>
@@ -35,7 +35,7 @@ function SamplePrevArrow(props) {
       onClick={onClick}
       className="absolute right-28 -top-5 md:-top-7 cursor-pointer transform -translate-[50%] z-10 opacity-80"
     >
-      <div className="text-white rounded-lg bg-[#2e2e2e] px-3 md:px-5 py-1.5 md:py-3">
+      <div className="text-white rounded-lg bg-[#2e2e2e] carouselArrowEffect px-3 md:px-5 py-1.5 md:py-3">
         <LuMoveLeft className="cursor-pointer md:text-xl text-xl lg:text-2xl   " />
       </div>
       <div className={className} style={{ display: "none" }}>

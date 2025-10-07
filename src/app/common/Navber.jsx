@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import Container from "./Container";
-
 function Navber() {
   // searchInput showing
   const [showSearch, setShowSearch] = useState(false);
@@ -11,29 +9,31 @@ function Navber() {
     setShowSearch(!showSearch);
   };
 
-  window.addEventListener('scroll', (e) => {
-    console.log(window.scrollY)
-    if(window.scrollY > 200){
-      document.querySelector('.navMain').style.backgroundColor = "#141414"
-    }else{
-      document.querySelector('.navMain').style.backgroundColor = "transparent"
+  window.addEventListener("scroll", (e) => {
+    console.log(window.scrollY);
+    if (window.scrollY > 0) {
+      document.querySelector(".navMain").style.backgroundColor = "#141414";
+    } else {
+      document.querySelector(".navMain").style.backgroundColor = "transparent";
     }
-  })
+  });
+
+
 
   return (
-    <div className="fixed top-0 left-0 w-screen z-20 navMain">
+    <div className="fixed top-0 left-0 w-screen z-50 navMain">
       <div className=" mx-auto overflow-x-hidden max-w-[1850px] ">
         <div className="md:px-10 px-3 lg:px-24  py-4 ">
-          <nav >
+          <nav>
             <div className="flex items-center justify-between ">
-              <Link to={"/"}>
+              <Link to={"/"} id="logo">
                 <img src="/images/Logo.png" className="w-auto" alt="" />
               </Link>
               <div className="px-4 py-4 bg-[#0F0F0F] rounded-lg border-3 border-[#1a1a1a] font-manrope lg:flex  hidden">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `links ${
+                    `links animate ${
                       isActive
                         ? "text-white bg-[#1a1a1a]"
                         : "text-[#BFBFBF]  bg-transparent"
@@ -46,7 +46,7 @@ function Navber() {
                 <NavLink
                   to="/MoviesShows"
                   className={({ isActive }) =>
-                    `links ${
+                    `links animate ${
                       isActive
                         ? "text-white bg-[#1a1a1a]"
                         : "text-[#BFBFBF]  bg-transparent"
@@ -59,7 +59,7 @@ function Navber() {
                 <NavLink
                   to="/Support"
                   className={({ isActive }) =>
-                    `links ${
+                    `links animate ${
                       isActive
                         ? "text-white bg-[#1a1a1a]"
                         : "text-[#BFBFBF]  bg-transparent"
@@ -72,7 +72,7 @@ function Navber() {
                 <NavLink
                   to="/Subscriptions"
                   className={({ isActive }) =>
-                    `links ${
+                    `links animate ${
                       isActive
                         ? "text-white bg-[#1a1a1a]"
                         : "text-[#BFBFBF]  bg-transparent"
@@ -84,11 +84,15 @@ function Navber() {
               </div>
               <div className="flex items-center lg:gap-6 md:gap-4 gap-2 xl:gap-8 text-gray-100 text-xl md:text-2xl">
                 <IoSearch
+                  id="search"
                   className="cursor-pointer"
                   onClick={ShowSearchHandle}
                 />
 
-                <IoMdNotificationsOutline className="cursor-pointer" />
+                <IoMdNotificationsOutline
+                  id="notifications"
+                  className="cursor-pointer"
+                />
               </div>
             </div>
           </nav>

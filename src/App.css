@@ -73,3 +73,49 @@ li {
   width: 100%;
 }
 
+/* carousel arrow animation */
+
+
+.carouselArrowEffect{
+  position: relative;
+  z-index: 99;
+  overflow-x: hidden;
+}
+.carouselArrowEffect::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #e50000;
+  transition: all 0.4s;
+  z-index: -9;
+}
+
+.carouselArrowEffect:hover::before{
+  height: 100%;
+}
+
+/* make a custom btn hover effect */
+
+.customBtnHoverEffect{
+  position: relative;
+  z-index: 99;
+  overflow-x: hidden;
+}
+.customBtnHoverEffect::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: rgb(66, 65, 65);
+  transition: all 0.4s;
+  z-index: -9;
+}
+
+.customBtnHoverEffect:hover::before{
+  height: 100%;
+}
