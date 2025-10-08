@@ -71,7 +71,7 @@ function Section5() {
                 {plans.map((plan, index) => (
                   <div
                     key={index}
-                    className="bg-[#1A1A1A] -z-40 plansAnimation carouselArrowEffect cursor-pointer hover:scale-105 py-8 px-9  rounded-xl border border-[#262626] hover:border-red-600 transition-all duration-300 flex flex-col justify-between"
+                    className="bg-[#1A1A1A] -z-40 plansAnimation carouselArrowEffect cursor-pointer hover:scale-105 py-8 px-9  rounded-xl border border-[#262626] hover:border-[#ff00005d] transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
                       <h3 className="text-[23px] md:text-[26px] font-semibold mb-3">
@@ -89,7 +89,7 @@ function Section5() {
                     </div>
 
                     <div className="flex gap-4 ">
-                      <Button className={"bg-[#141414] lg:text-[15px] lg:tracking-wide"}>
+                      <Button className={"bg-[#141414] lg:text-[15px] lg:tracking-wide border border-[#262626]"}>
                         Start Free Trail
                       </Button>
                       <Button className={"bg-[#E50000] lg:text-[15px] lg:tracking-wide"}>Choose Plan</Button>

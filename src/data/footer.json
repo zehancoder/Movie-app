@@ -1,0 +1,29 @@
+{
+  "footer": [
+    {
+      "title": "Home",
+      "path": "/home",
+      "links": ["Categories", "Devices", "Pricing", "FAQ"]
+    },
+    {
+      "title": "Movies",
+      "path": "/movies",
+      "links": ["Gernes", "Trending", "New Release", "Popular"]
+    },
+    {
+      "title": "Shows",
+      "path": "/shows",
+      "links": ["Gernes", "Trending", "New Release", "Popular"]
+    },
+    {
+      "title": "Support",
+      "path": "/support",
+      "links": ["Contact Us"]
+    },
+    {
+      "title": "Subscription",
+      "path": "/subscription",
+      "links": ["Plans", "Features"]
+    }
+  ]
+}

@@ -9,7 +9,7 @@ function BottomSection() {
     <div className="w-[100vw] bg-[#141414] py-5 px-3 overflow-x-hidden">
       <Container className={"mx-auto"}>
         <div className="md:py-10 sm:py-8 py-6 lg:py-14">
-          <div className="relative rounded-xl bottomGradient bg-[url(/images/heroImg.png)] text-white py-16 px-8 overflow-hidden">
+          <div className="relative rounded-xl bottomGradient  text-white py-16 px-8 overflow-hidden">
             {/* Background image overlay */}
             <div
               className="absolute customGradientColor inset-0 bg-[url('./images/heroImg.png')]

@@ -4,7 +4,7 @@ import RoutesApp from "./app/routes/Routes";
 import Animation from "./GSAPanimation/Animation";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import Footer from "./app/common/Footer";
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,6 +41,7 @@ function App() {
           <Animation /> 
           <Navber />
           <RoutesApp />
+          <Footer/>
         </>
       )}
     </>

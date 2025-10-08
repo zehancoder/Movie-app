@@ -141,7 +141,7 @@ function Animation() {
         },
       }
     );
-    // plans animation
+    // premium plans section animation
     gsap.fromTo(
       ".plansAnimation",
       { opacity: 0, x: 350 },
