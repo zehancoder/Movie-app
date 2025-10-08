@@ -94,7 +94,7 @@ function Section4() {
             <div
 
               key={faq.id}
-              className="bg-transparent carouselArrowEffect p-5 rounded-xl border-b border-red-900 transition-all duration-300"
+              className="bg-transparent askQuestion carouselArrowEffect p-5 rounded-xl border-b border-red-900 transition-all duration-300"
             >
               <div
                 className="flex justify-between items-center cursor-pointer"

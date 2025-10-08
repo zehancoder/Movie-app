@@ -13,7 +13,7 @@ function Navber() {
     console.log(window.scrollY);
     if (window.scrollY > 0) {
       document.querySelector(".navMain").style.backgroundColor = "#141414";
-    } else {
+    } else if(window.scrollY < 1) {
       document.querySelector(".navMain").style.backgroundColor = "transparent";
     }
   });
@@ -29,7 +29,7 @@ function Navber() {
               <Link to={"/"} id="logo">
                 <img src="/images/Logo.png" className="w-auto" alt="" />
               </Link>
-              <div className="px-4 py-4 bg-[#0F0F0F] rounded-lg border-3 border-[#1a1a1a] font-manrope lg:flex  hidden">
+              <div className="px-4 py-4 z-50 bg-[#0F0F0F] rounded-lg border-3 border-[#1a1a1a] font-manrope lg:flex  hidden">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>

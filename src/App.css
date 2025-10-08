@@ -119,3 +119,8 @@ li {
 .customBtnHoverEffect:hover::before{
   height: 100%;
 }
+
+/* custom gradient color for bottom section */
+.bottomGradient{
+  background: linear-gradient(50deg, #0f0f0f 20%, #150000 100%, #ff0000 200%),
+}
