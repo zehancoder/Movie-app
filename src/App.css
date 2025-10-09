@@ -152,3 +152,14 @@ li {
 .footerHoverEffect:hover::before{
   width: 100%;
 }
+
+/* movies & shows section */
+
+
+/* make shadow in first movie view */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+  
+} 

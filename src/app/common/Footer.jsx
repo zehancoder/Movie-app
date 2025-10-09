@@ -4,7 +4,7 @@ import footerData from "../../data/footer.json";
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <div className="bg-[#0F0F0F] py-4 w-full  ">
+    <div className="bg-[#0F0F0F] py-4 w-full ">
       <Container className={"mx-auto"}>
         <div className="md:py-8 py-5 lg:py-14 px-5  ">
           <div>
