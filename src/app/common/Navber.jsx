@@ -10,7 +10,6 @@ function Navber() {
   };
 
   window.addEventListener("scroll", (e) => {
-    console.log(window.scrollY);
     if (window.scrollY > 0) {
       document.querySelector(".navMain").style.backgroundColor = "#141414";
     } else if(window.scrollY < 1) {

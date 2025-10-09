@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import fetchingData from "./dataFetch"
+import movieSlice from "./dataFetch"
 export const store = configureStore({
-  reducer: {},
+  reducer: movieSlice,
 })

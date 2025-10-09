@@ -1,16 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = []
 
-export const counterSlice = createSlice({
+const initialState = {
+  movies: []
+}
+
+export const movieSlice = createSlice({
   name: 'moviesData',
   initialState,
   reducers: {
-    
+    nowPlaying: (state, actions) => {
+      state.movies.push(actions.payload)
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { nowPlaying } = movieSlice.actions
 
-export default counterSlice.reducer
+export default movieSlice.reducer
+
+
