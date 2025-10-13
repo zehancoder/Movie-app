@@ -9,6 +9,12 @@
 @theme {
   --breakpoint-sm: 750px;
 }
+@theme {
+  --breakpoint-sm2: 580px;
+}
+@theme{
+  --breakpoint-md2: 850px;
+}
 
 #root {
   z-index: -99;

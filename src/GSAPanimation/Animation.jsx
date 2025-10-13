@@ -1,13 +1,11 @@
-import React from 'react'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react';
-import {ScrollTrigger} from 'gsap/all'
+import React from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 function Animation() {
-
-
-      // adding gsap with navber
+  // adding gsap with navber
   const tl = gsap.timeline();
 
   const onLoadHandle = () => {
@@ -16,7 +14,7 @@ function Animation() {
       {
         y: -40,
         duration: 1,
-        delay: 0.2,
+        delay: 0.1,
         opacity: 0,
       },
       {
@@ -29,14 +27,13 @@ function Animation() {
       {
         y: -40,
         duration: 1,
-        delay: 0.2,
+        delay: 0.1,
         opacity: 0,
       },
       {
         y: 0,
         opacity: 1,
-                stagger: 0.4
-
+        stagger: 0.4,
       }
     );
     tl.fromTo(
@@ -44,7 +41,7 @@ function Animation() {
       {
         y: -40,
         duration: 1,
-        delay: 0.2,
+        delay: 0.1,
         opacity: 0,
       },
       {
@@ -57,7 +54,7 @@ function Animation() {
       {
         y: -40,
         duration: 1,
-        delay: 0.2,
+        delay: 0.1,
         opacity: 0,
       },
       {
@@ -71,7 +68,7 @@ function Animation() {
       "#landingHeading",
       {
         x: -200,
-        duration: .5,
+        duration: 0.5,
         delay: 0.1,
         opacity: 0,
       },
@@ -84,7 +81,7 @@ function Animation() {
       "#landingPara",
       {
         x: 200,
-        duration: .5,
+        duration: 0.5,
         delay: 0.1,
         opacity: 0,
       },
@@ -97,7 +94,7 @@ function Animation() {
       "#landingButton",
       {
         y: 100,
-        duration: .5,
+        duration: 0.5,
         delay: 0.1,
         opacity: 0,
       },
@@ -110,12 +107,12 @@ function Animation() {
     // section 3 vireous devices
     gsap.fromTo(
       ".devicesAnimation",
-      { opacity: 0, y: 150 },
+      { opacity: 0, y: 250 },
       {
         opacity: 1,
         y: 0,
-        duration: .6,
-        stagger: 0.5,
+        duration: 0.5,
+        stagger: 0.4,
         scrollTrigger: {
           trigger: ".devicesAnimation",
           start: "top 100%", // যখন এলিমেন্ট পেজে দেখা যাবে তখন শুরু হবে
@@ -127,17 +124,17 @@ function Animation() {
     // prequent ask quesiton section
     gsap.fromTo(
       ".askQuestion",
-      { opacity: 0, y: 150 },
+      { opacity: 0, y: 250 },
       {
         opacity: 1,
         y: 0,
-        duration: .6,
-        stagger: 0.5,
+        duration: 0.5,
+        stagger: 0.4,
         scrollTrigger: {
           trigger: ".askQuestion",
           start: "top 100%", // যখন এলিমেন্ট পেজে দেখা যাবে তখন শুরু হবে
           end: "bottom 65%",
-          scrub: 2,
+          scrub: 2
         },
       }
     );
@@ -148,13 +145,13 @@ function Animation() {
       {
         opacity: 1,
         x: 0,
-        duration: .6,
-        stagger: 0.5,
+        duration: 0.5,
+        stagger: 0.4,
         scrollTrigger: {
           trigger: ".plansAnimation",
           start: "top 100%", // যখন এলিমেন্ট পেজে দেখা যাবে তখন শুরু হবে
           end: "bottom 85%",
-          scrub: 2,
+          scrub: 2
         },
       }
     );
@@ -164,10 +161,7 @@ function Animation() {
     onLoadHandle();
   }, []);
 
-  return (
-    <>
-    </>
-  )
+  return <></>;
 }
 
-export default Animation
+export default Animation;

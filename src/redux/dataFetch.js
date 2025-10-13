@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-  movies: []
+  movies: [],
+  page2: []
 }
 
 export const movieSlice = createSlice({
@@ -11,12 +12,15 @@ export const movieSlice = createSlice({
   reducers: {
     nowPlaying: (state, actions) => {
       state.movies.push(actions.payload)
+    },
+    page2: (state, actions) => {
+      state.page2.push(actions.payload)
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { nowPlaying } = movieSlice.actions
+export const { nowPlaying, page2 } = movieSlice.actions
 
 export default movieSlice.reducer
 

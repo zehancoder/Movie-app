@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Container from "../../common/Container";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,6 +16,7 @@ import { nowPlaying } from "../../../redux/dataFetch";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MoviesSection from "./MoviesSection";
+import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
 
 function MoviesShows() {
   const [movie, setMovies] = useState([]);
@@ -60,59 +61,92 @@ function MoviesShows() {
   const [carouselMovies, setCarouselMovies] = useState([]);
   useEffect(() => {
     if (playingData.length !== 0) {
-      for (let val = 0; val <= 3; val++) {
+      for (let val = 0; val <= 7; val++) {
         const getRandomMovie = playingData[0][Math.floor(Math.random() * 19)];
 
         setCarouselMovies((prev) => [...prev, getRandomMovie]);
-        
       }
     }
-
-   
-
   }, [playingData]);
-
-
 
   // 4 movies getting complete
 
   // carousel count number
-  const [carouselNum, setCarouselNum] = useState(0);
-  const [carouselTranslate, setCarouselTranslet] = useState(0);
 
-  const carouselUp = () => {
-    if (carouselNum >= 3) {
-      setCarouselNum(0);
+ const [carouselNum, setCarouselNum] = useState(0);
+const [carouselTranslate, setCarouselTranslet] = useState(0);
+const timerRef = useRef(null);
+
+const startAutoPlay = () => {
+  // আগের interval থাকলে বন্ধ করো (নিরাপদভাবে)
+  clearInterval(timerRef.current);
+
+  timerRef.current = setInterval(() => {
+    setCarouselNum((prevNum) => {
+      if (prevNum >= 7) {
+        setCarouselTranslet(0);
+        return 0;
+      } else {
+        setCarouselTranslet((prevTrans) => prevTrans + 100);
+        return prevNum + 1;
+      }
+    });
+  }, 10000);
+};
+
+const stopAutoPlay = () => {
+  clearInterval(timerRef.current);
+};
+
+useEffect(() => {
+  startAutoPlay();
+  return () => stopAutoPlay();
+}, []);
+
+const carouselUp = () => {
+  stopAutoPlay();
+
+  setCarouselNum((prevNum) => {
+    if (prevNum >= 7) {
       setCarouselTranslet(0);
+      return 0;
     } else {
-      setCarouselNum(carouselNum + 1);
-      setCarouselTranslet(carouselTranslate + 100);
+      setCarouselTranslet((prevTrans) => prevTrans + 100);
+      return prevNum + 1;
     }
-  };
+  });
 
-  const myInterval = setInterval(() => {
-    if (carouselNum >= 3) {
-      setCarouselNum(0);
-      setCarouselTranslet(0);
-    } else {
-      setCarouselNum(carouselNum + 1);
-      setCarouselTranslet(carouselTranslate + 100);
-    }
-    clearInterval(myInterval);
-  }, 4000);
+  startAutoPlay();
+};
 
-  const carouselDown = () => {
-    console.log("down");
-    if (carouselNum < 1) {
-      setCarouselNum(3);
-      setCarouselTranslet(carouselTranslate + 300);
+const carouselDown = () => {
+  stopAutoPlay();
+
+  setCarouselNum((prevNum) => {
+    if (prevNum < 1) {
+      setCarouselTranslet(600);
+      return 7;
     } else {
-      setCarouselNum(carouselNum - 1);
-      setCarouselTranslet(carouselTranslate - 100);
+      setCarouselTranslet((prevTrans) => prevTrans - 100);
+      return prevNum - 1;
     }
-  };
+  });
+
+  startAutoPlay();
+};
+  
 
   // add animation with carousel movie images
+
+  // carousel pausing funcitonality
+  // const pauseCarousel = () => {
+  //       setCarouRun(!carouRun);
+
+  //   stopAutoPlay();
+  //   if(!carouRun){
+  //     startAutoPlay()
+  //   }
+  // };
 
   // const bgImageSize = document.querySelector(".bgImageSize")
 
@@ -159,6 +193,35 @@ function MoviesShows() {
                     : "bg-[#333333] h-0.5 md:h-1 w-3 md:w-4"
                 }`}
               ></div>
+
+              <div
+                className={`   ${
+                  carouselNum == 4
+                    ? "bg-[#ff0000] h-1 md:h-1.5 w-4 md:w-5"
+                    : "bg-[#333333] h-0.5 md:h-1 w-3 md:w-4"
+                }`}
+              ></div>
+              <div
+                className={`   ${
+                  carouselNum == 5
+                    ? "bg-[#ff0000] h-1 md:h-1.5 w-4 md:w-5"
+                    : "bg-[#333333] h-0.5 md:h-1 w-3 md:w-4"
+                }`}
+              ></div>
+              <div
+                className={`   ${
+                  carouselNum == 6
+                    ? "bg-[#ff0000] h-1 md:h-1.5 w-4 md:w-5"
+                    : "bg-[#333333] h-0.5 md:h-1 w-3 md:w-4"
+                }`}
+              ></div>
+              <div
+                className={`  ${
+                  carouselNum == 7
+                    ? "bg-[#ff0000] h-1 md:h-1.5 w-4 md:w-5"
+                    : "bg-[#333333] h-0.5 md:h-1 w-3 md:w-4"
+                }`}
+              ></div>
             </div>
 
             <div
@@ -172,7 +235,7 @@ function MoviesShows() {
           {/* carousel arrow */}
 
           <div
-            className={`md:mt-20 mt-24  lg:mt-28 h-full flex w-auto   transition duration-[.8s] ease-in`}
+            className={`md:mt-20 mt-24  lg:mt-28 h-full flex w-auto   transition duration-[.6s] ease-in `}
             style={{
               transform: `translateX(-${carouselTranslate}%)`,
             }}
@@ -180,14 +243,15 @@ function MoviesShows() {
             {/* show movies in carousel type */}
 
             {carouselMovies.map(
-              ({ backdrop_path, overview, original_title }) => (
+              ({ backdrop_path, overview, original_title }, id) => (
                 <div
-                  className={`w-full  shrink-0 -z-10 transform   h-full relative rounded-lg overflow-hidden bg-contain `}
+                  key={id}
+                  className={`w-full  shrink-0 -z-10 transform   h-full relative rounded-lg  overflow-hidden bg-contain `}
                   id="bgUrl1"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
-                    className="absolute brightness-75 top-0 left-0 h-full w-full object-cover"
+                    className="absolute brightness-75 top-0 left-0 h-full w-full object-cover "
                     alt=""
                   />
                   <div className="overlay"></div>
@@ -199,18 +263,18 @@ function MoviesShows() {
                       </ParagraphText>
                       <div className="flex items-center justify-center mt-4">
                         <Button
-                          className={"bg-[#ff0000] flex items-center gap-2"}
+                          className={"bg-[#ff0000] flex items-center gap-2 "}
                         >
                           <IoPlay /> Play Now
                         </Button>
                         <div className="flex items-center gap-2 text-[18px] ml-2">
-                          <span className="px-3 py-2 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                          <span className="px-3 md:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                             <FiPlus />
                           </span>{" "}
-                          <span className="px-3 py-2 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                          <span className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                             <AiFillLike />
                           </span>
-                          <span className="px-3 py-2 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                          <span className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                             <AiFillSound />
                           </span>
                         </div>
