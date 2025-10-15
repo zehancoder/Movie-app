@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import { FaPlay } from "react-icons/fa6";
@@ -10,8 +10,15 @@ import Section3 from "./Section3";
 import Section4 from "./Section4";
 import Section5 from "./Section5";
 import BottomSection from "./BottomSection";
+import { useLocation } from "react-router-dom";
 
 function LandingPage() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <div
@@ -54,8 +61,8 @@ function LandingPage() {
       <Section2 />
       <Section3 />
       <Section4 />
-      <Section5/>
-      <BottomSection/>
+      <Section5 />
+      <BottomSection />
       <Routes>
         <Route path="" />
       </Routes>

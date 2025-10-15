@@ -6,6 +6,7 @@ import { LuMoveLeft } from "react-icons/lu";
 import jsonData from '../../data/carouselData.json'
 import { LuMoveRight } from "react-icons/lu";
 import CategoryCard from "../common/CategoryCard";
+import CommonCarou from "../common/CommonCarou";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -131,7 +132,18 @@ function CarouselMaker() {
     <div className="slider-container list-none p-2 md:p-3 w-full mx-auto">
       <Slider {...settings}>
         {jsonData.map(({text, img1, img2, img3, img4}) => {
-          return <CategoryCard text={text} img1={img1} img2={img2} img3={img3} img4={img4}/>;
+          return  <div
+                  className="shrink-0  md2:w-[33.5%] w-[100%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
+                  style={{ transform: `translateX(${-carouselTranslate}%)` }}
+                  id="carousel"
+                >
+                  {
+                    <CommonCarou
+                      iimg1={img1} img2={img2} img3={img3} img4={img4}
+                      text={text}
+                    />
+                  }
+                </div>
         })}
       </Slider>
     </div>

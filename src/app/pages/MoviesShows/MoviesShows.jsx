@@ -17,8 +17,16 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MoviesSection from "./MoviesSection";
 import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 function MoviesShows() {
+  // making scroll bar when path name is changed
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   const [movie, setMovies] = useState([]);
   const dispatch = useDispatch();
   // getting data from tmdb api
@@ -73,15 +81,39 @@ function MoviesShows() {
 
   // carousel count number
 
- const [carouselNum, setCarouselNum] = useState(0);
-const [carouselTranslate, setCarouselTranslet] = useState(0);
-const timerRef = useRef(null);
+  const [carouselNum, setCarouselNum] = useState(0);
+  const [carouselTranslate, setCarouselTranslet] = useState(0);
+  const timerRef = useRef(null);
 
-const startAutoPlay = () => {
-  // আগের interval থাকলে বন্ধ করো (নিরাপদভাবে)
-  clearInterval(timerRef.current);
+  const startAutoPlay = () => {
+    // আগের interval থাকলে বন্ধ করো (নিরাপদভাবে)
+    clearInterval(timerRef.current);
 
-  timerRef.current = setInterval(() => {
+    timerRef.current = setInterval(() => {
+      setCarouselNum((prevNum) => {
+        if (prevNum >= 7) {
+          setCarouselTranslet(0);
+          return 0;
+        } else {
+          setCarouselTranslet((prevTrans) => prevTrans + 100);
+          return prevNum + 1;
+        }
+      });
+    }, 10000);
+  };
+
+  const stopAutoPlay = () => {
+    clearInterval(timerRef.current);
+  };
+
+  useEffect(() => {
+    startAutoPlay();
+    return () => stopAutoPlay();
+  }, []);
+
+  const carouselUp = () => {
+    stopAutoPlay();
+
     setCarouselNum((prevNum) => {
       if (prevNum >= 7) {
         setCarouselTranslet(0);
@@ -91,50 +123,25 @@ const startAutoPlay = () => {
         return prevNum + 1;
       }
     });
-  }, 10000);
-};
 
-const stopAutoPlay = () => {
-  clearInterval(timerRef.current);
-};
+    startAutoPlay();
+  };
 
-useEffect(() => {
-  startAutoPlay();
-  return () => stopAutoPlay();
-}, []);
+  const carouselDown = () => {
+    stopAutoPlay();
 
-const carouselUp = () => {
-  stopAutoPlay();
+    setCarouselNum((prevNum) => {
+      if (prevNum < 1) {
+        setCarouselTranslet(600);
+        return 7;
+      } else {
+        setCarouselTranslet((prevTrans) => prevTrans - 100);
+        return prevNum - 1;
+      }
+    });
 
-  setCarouselNum((prevNum) => {
-    if (prevNum >= 7) {
-      setCarouselTranslet(0);
-      return 0;
-    } else {
-      setCarouselTranslet((prevTrans) => prevTrans + 100);
-      return prevNum + 1;
-    }
-  });
-
-  startAutoPlay();
-};
-
-const carouselDown = () => {
-  stopAutoPlay();
-
-  setCarouselNum((prevNum) => {
-    if (prevNum < 1) {
-      setCarouselTranslet(600);
-      return 7;
-    } else {
-      setCarouselTranslet((prevTrans) => prevTrans - 100);
-      return prevNum - 1;
-    }
-  });
-
-  startAutoPlay();
-};
-  
+    startAutoPlay();
+  };
 
   // add animation with carousel movie images
 
