@@ -11,6 +11,7 @@ import Heading from "../../common/Heading";
 import Button from "../../common/Button";
 import Top10Genre from "./Top10Genre";
 import { Link } from "react-router-dom";
+import TrandingNow from "./TrandingNow";
 function MoviesSection() {
   const [movie, setMovies] = useState([]);
 
@@ -144,8 +145,13 @@ function MoviesSection() {
         if(window.innerWidth < 850){
           setArrowArr(9)
         }
+        if(window.innerWidth > 1280){
+        setArrowArr(7)
+        setCarouselNum(0)
+        setCarouselTranslet(0)
+      }
     })
-  }, [])
+  }, [window.innerWidth])
 
     //end make dinamic arr for making loop and make carousel tracker;
 
@@ -163,10 +169,9 @@ function MoviesSection() {
   };
 
   const carouselDown = () => {
-    console.log("down");
     if (carouselNum < 1) {
       setCarouselNum(arrowArr - 1);
-      setCarouselTranslet(carouselTranslate + arrowArr === 10 ? 700 : arrowArr === 9 ? 800 : 600);
+      setCarouselTranslet(carouselTranslate + arrowArr === 8 ? 700 : arrowArr === 9 ? 800 : 600);
     } else {
       setCarouselNum(carouselNum - 1);
       setCarouselTranslet(carouselTranslate - 100);
@@ -178,7 +183,7 @@ function MoviesSection() {
 
 
   return (
-    <div className="w-[100vw] bg-[#141414] py-5 px-3 overflow-x-hidden relative">
+    <div className="w-[100vw] bg-[#141414] font-manrope py-5 px-3 overflow-x-hidden relative">
       <Container
         className={
           "mx-auto  border border-[#1F1F1F]  md:px-10 px-8 lg:px-16 xl:px-14 rounded-lg"
@@ -209,8 +214,8 @@ function MoviesSection() {
                       <div
                         className={`mx-auto  ${
                           carouselNum === idx
-                            ? "bg-[#ff0000] h-[3px] lg:h-1.5 w-4 md:w-5"
-                            : "bg-[#333333] h-0.5 lg:h-1 w-3 md:w-4"
+                            ? "bg-[#ff0000] h-[3px] lg:h-1 w-3 md:w-4"
+                            : "bg-[#333333] h-[1px] lg:h-0.5 w-2 md:w-3"
                         }`}
                       ></div>
                     ))}
@@ -229,7 +234,7 @@ function MoviesSection() {
             {carouselMovies.length > 0 ? (
               carouselMovies.map((data, idx) => (
                 <div
-                  className="shrink-0  md2:w-[33.5%] w-[100%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
+                  className="shrink-0 relative md2:w-[33.5%] w-[50%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
                   style={{ transform: `translateX(${-carouselTranslate}%)` }}
                   id="carousel"
                 >
@@ -253,6 +258,7 @@ function MoviesSection() {
 
 
           <Top10Genre/>
+          <TrandingNow/>
         </div>
       </Container>
     </div>

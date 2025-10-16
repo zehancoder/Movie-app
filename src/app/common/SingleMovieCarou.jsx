@@ -1,16 +1,18 @@
 import React from 'react'
 
-function SingleMovieCarou({text, randomItem}) {
+
+function SingleMovieCarou({img, leftText, rightText}) {
   return (
-    <div className='px-3 py-3 bg-[#1A1A1A] w-full'>
-        <div>
-            <div className='w-full rounded-md overflow-hidden'>
-                <img className='w-full' src={img} alt="" />
+    <div className='md:m-2 m-1.5 xl:m-2'>
+        <div className='px-3 rounded-lg  border-1 border-[#262626]  w-full bg-[#1A1A1A]  py-3'>
+            <div className='w-full relative h-full rounded-md overflow-hidden'>
+                <img className='w-full h-full object-contain bg-no-repeat' src={img} alt="" />
+
             </div>
             <div className='flex items-center justify-between'>
-                <p>{text}</p>
+                <div>{leftText}</div>
                 <div>
-                    {randomItem}
+                    {rightText}
                 </div>
             </div>
         </div>

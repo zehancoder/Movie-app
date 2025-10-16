@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa6";
 function CommonCarou({ img1, img2, img3, img4, text }) {
   return (
     <div>
-      <div className="m-3 cursor-pointer overflow-hidden border border-[#383838] bg-[#1A1A1A] rounded-xl">
+      <div className="md:m-2 m-1.5 lg:m-3 cursor-pointer overflow-hidden border border-[#383838] bg-[#1A1A1A] rounded-xl">
         <div className="md:p-6 p-4 lg:p-8  relative">
           <div className="">
             <div className="flex items-center justify-center brightness-75 gap-4">
@@ -34,10 +34,10 @@ function CommonCarou({ img1, img2, img3, img4, text }) {
             </div>
           </div>
           <div className="flex items-center justify-between mt-10">
-            <p className="text-center z-30 text-white font-medium md:text-[17px] text-[15px] lg:text-xl">
+            <p className="text-center z-30 text-white font-medium md:text-[17px] text-[14px] lg:text-xl">
               {text}
             </p>
-            <FaArrowRight className="text-white text-2xl font-medium" />
+            <FaArrowRight className="text-white md:text-xl text-lg lg:text-2xl font-medium" />
           </div>
           <div className="overlay2"></div>
         </div>

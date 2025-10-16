@@ -112,7 +112,7 @@ function Top10Genre() {
           data10,
         ]);
       }
-    }, 200);
+    }, 400);
   }, [movie, page2Movie]);
 
   // moves category title
@@ -143,8 +143,13 @@ function Top10Genre() {
       if (window.innerWidth < 850) {
         setArrowArr(9);
       }
+      if (window.innerWidth > 1280) {
+        setArrowArr(7);
+        setCarouselNum(0);
+        setCarouselTranslet(0);
+      }
     });
-  }, []);
+  }, [window.innerWidth]);
 
   //end make dinamic arr for making loop and make carousel tracker;
 
@@ -159,11 +164,10 @@ function Top10Genre() {
   };
 
   const carouselDown = () => {
-    console.log("down");
     if (carouselNum < 1) {
       setCarouselNum(arrowArr - 1);
       setCarouselTranslet(
-        carouselTranslate + arrowArr === 10 ? 700 : arrowArr === 9 ? 800 : 600
+        carouselTranslate + arrowArr === 8 ? 700 : arrowArr === 9 ? 800 : 600
       );
     } else {
       setCarouselNum(carouselNum - 1);
@@ -192,8 +196,8 @@ function Top10Genre() {
                     <div
                       className={`mx-auto  ${
                         carouselNum === idx
-                          ? "bg-[#ff0000] h-[3px] lg:h-1.5 w-4 md:w-5"
-                          : "bg-[#333333] h-0.5 lg:h-1 w-3 md:w-4"
+                          ? "bg-[#ff0000] h-[3px] lg:h-1 w-3 md:w-4"
+                          : "bg-[#333333] h-[1px] lg:h-0.5 w-2 md:w-3"
                       }`}
                     ></div>
                   ))}
@@ -212,13 +216,13 @@ function Top10Genre() {
           {carouselMovies.length > 0 ? (
             carouselMovies.map((data, idx) => (
               <div
-                className="shrink-0 relative md2:w-[33.5%] w-[100%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
+                className="shrink-0 relative md2:w-[33.5%] w-[50%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
                 style={{ transform: `translateX(${-carouselTranslate}%)` }}
                 id="carousel"
               >
                 <Link to={title[idx]}>
-                  <div className=" absolute bottom-[75px] z-30 left-12">
-                    <p className="bg-[#ff0000] px-1.5 text-[11px] text-white rounded-[2px] py-1">
+                  <div className=" absolute bottom-[45px] md:bottom-[60px] lg:bottom-[75px] z-30 left-6 md:left-10 lg:left-12">
+                    <p className="bg-[#ff0000] px-1.5 md:text-[9px] text-[7px] lg:text-[11px] text-white rounded-[2px] py-1">
                       Top 10 In
                     </p>
                   </div>
