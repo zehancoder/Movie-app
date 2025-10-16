@@ -17,7 +17,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MoviesSection from "./MoviesSection";
 import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function MoviesShows() {
   // making scroll bar when path name is changed
@@ -143,19 +143,7 @@ function MoviesShows() {
     startAutoPlay();
   };
 
-  // add animation with carousel movie images
 
-  // carousel pausing funcitonality
-  // const pauseCarousel = () => {
-  //       setCarouRun(!carouRun);
-
-  //   stopAutoPlay();
-  //   if(!carouRun){
-  //     startAutoPlay()
-  //   }
-  // };
-
-  // const bgImageSize = document.querySelector(".bgImageSize")
 
   return (
     <>
@@ -250,9 +238,9 @@ function MoviesShows() {
             {/* show movies in carousel type */}
 
             {carouselMovies.map(
-              ({ backdrop_path, overview, original_title }, id) => (
+              ({ backdrop_path, overview, original_title, id }, idx) => (
                 <div
-                  key={id}
+                  key={idx}
                   className={`w-full  shrink-0 -z-10 transform   h-full relative rounded-lg  overflow-hidden bg-contain `}
                   id="bgUrl1"
                 >
@@ -270,9 +258,11 @@ function MoviesShows() {
                       </ParagraphText>
                       <div className="flex items-center justify-center mt-4">
                         <Button
-                          className={"bg-[#ff0000] flex items-center gap-2 "}
+                          className={"bg-[#ff0000]  "}
                         >
-                          <IoPlay /> Play Now
+                          <Link to={`video/${id}`} className="flex items-center gap-2">
+                            <IoPlay /> Play Now
+                          </Link>
                         </Button>
                         <div className="flex items-center gap-2 text-[18px] ml-2">
                           <span className="px-3 md:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">

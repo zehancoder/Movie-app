@@ -5,13 +5,13 @@ import { useSelector } from "react-redux";
 import { LuMoveLeft } from "react-icons/lu";
 import { LuMoveRight } from "react-icons/lu";
 import { useDispatch } from "react-redux";
-import { page3, trandingNow1 } from "../../../redux/dataFetch";
-import { MdWatchLater } from "react-icons/md";
-import { FaEye } from "react-icons/fa6";
 import SingleMovieCarou from "../../common/SingleMovieCarou";
-import { Link, useParams } from "react-router-dom";
-
-function TrandingNow() {
+import { Link, Route, Routes, useParams } from "react-router-dom";
+import { upComeing } from "../../../redux/dataFetch";
+import Play from "../videoPlay/Play";
+import { topRated } from "../../../redux/dataFetch";
+import { FaEye } from "react-icons/fa6";
+function TopRated() {
   const [carouselNum, setCarouselNum] = useState(0);
 
   const [movie, setMovies] = useState([]);
@@ -30,7 +30,7 @@ function TrandingNow() {
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=2",
       options
     )
       .then((res) => res.json())
@@ -42,12 +42,12 @@ function TrandingNow() {
     if (movie.length === 0) {
       return;
     } else {
-      dispatch(trandingNow1(movie));
+      dispatch(topRated(movie));
     }
   }, [movie]);
 
   // get all movies from redux store
-  const trandingPage1 = useSelector((state) => state.trandingNow1);
+  const trandingPage1 = useSelector((state) => state.topRated);
 
   const trandingPage1Movie = trandingPage1[0];
   // successfuly get data from redux store
@@ -128,12 +128,11 @@ function TrandingNow() {
     }
   };
 
-
   return (
     <>
       <div>
         <div className="flex items-center font-manrope lg:py-12 md:py-10 sm:py-6 py-4 justify-between">
-          <Heading>Trending Now</Heading>
+          <Heading>Must - Watch Movies</Heading>
           <div className="w flex items-center gap-2 text-white px-3 py-3 z-20 rounded-lg text-xl font-bold border bg-[#0F0F0F] border-[#1F1F1F]">
             <div
               onClick={carouselDown}
@@ -166,10 +165,7 @@ function TrandingNow() {
         </div>
         <div className="flex items-center ">
           {carouselMovies.map(
-            (
-              { poster_path, original_title, id, vote_average, popularity },
-              i
-            ) => (
+            ({ poster_path, original_title, id, release_date, vote_average, popularity }, i) => (
               <div
                 className=" relative   lg:w-[20%] md2:w-[25%] w-[50%] sm2:w-[33.33%]  xl:w-[16.66%] 2xl:w-[14.2857%] transition duration-[.4s] ease-in shrink-0"
                 key={i}
@@ -204,7 +200,9 @@ function TrandingNow() {
                         </div>
                         <div className="flex absolute bottom-[11px] right-[16px] md:bottom-[18px] md:right-[18px] items-center gap-1">
                           <FaEye className="text-[12px] md:text-sm" />
-                          <p className="text-[12px] md:text-[14px]">{Math.floor(popularity)}k</p>
+                          <p className="text-[12px] md:text-[14px]">
+                            {Math.floor(popularity)}k
+                          </p>
                         </div>
                       </div>
                     }
@@ -219,4 +217,4 @@ function TrandingNow() {
   );
 }
 
-export default TrandingNow;
+export default TopRated;

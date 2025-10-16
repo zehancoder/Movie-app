@@ -12,6 +12,8 @@ import Button from "../../common/Button";
 import Top10Genre from "./Top10Genre";
 import { Link } from "react-router-dom";
 import TrandingNow from "./TrandingNow";
+import NewRelese from "./NewRelese";
+import TopRated from "./TopRated";
 function MoviesSection() {
   const [movie, setMovies] = useState([]);
 
@@ -191,7 +193,7 @@ function MoviesSection() {
       >
         <div className="md:py-10 sm:py-8 py-6 lg:py-14  overflow-x-hidden ">
           {/* add movies button */}
-          <div className="absolute -top-0 z-50 ">
+          <div className="absolute -top-0 z-30 ">
             <Button className={'bg-[#ff0000] '}>
               Movies
             </Button>
@@ -259,6 +261,8 @@ function MoviesSection() {
 
           <Top10Genre/>
           <TrandingNow/>
+          <NewRelese/>
+          <TopRated/>
         </div>
       </Container>
     </div>

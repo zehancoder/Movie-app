@@ -5,13 +5,11 @@ import { useSelector } from "react-redux";
 import { LuMoveLeft } from "react-icons/lu";
 import { LuMoveRight } from "react-icons/lu";
 import { useDispatch } from "react-redux";
-import { page3, trandingNow1 } from "../../../redux/dataFetch";
-import { MdWatchLater } from "react-icons/md";
-import { FaEye } from "react-icons/fa6";
 import SingleMovieCarou from "../../common/SingleMovieCarou";
-import { Link, useParams } from "react-router-dom";
-
-function TrandingNow() {
+import { Link, Route, Routes, useParams } from "react-router-dom";
+import { upComeing } from "../../../redux/dataFetch";
+import Play from "../videoPlay/Play";
+function NewRelese() {
   const [carouselNum, setCarouselNum] = useState(0);
 
   const [movie, setMovies] = useState([]);
@@ -30,7 +28,7 @@ function TrandingNow() {
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=2",
       options
     )
       .then((res) => res.json())
@@ -42,12 +40,12 @@ function TrandingNow() {
     if (movie.length === 0) {
       return;
     } else {
-      dispatch(trandingNow1(movie));
+      dispatch(upComeing(movie));
     }
   }, [movie]);
 
   // get all movies from redux store
-  const trandingPage1 = useSelector((state) => state.trandingNow1);
+  const trandingPage1 = useSelector((state) => state.upComeing);
 
   const trandingPage1Movie = trandingPage1[0];
   // successfuly get data from redux store
@@ -133,7 +131,7 @@ function TrandingNow() {
     <>
       <div>
         <div className="flex items-center font-manrope lg:py-12 md:py-10 sm:py-6 py-4 justify-between">
-          <Heading>Trending Now</Heading>
+          <Heading>New Releases</Heading>
           <div className="w flex items-center gap-2 text-white px-3 py-3 z-20 rounded-lg text-xl font-bold border bg-[#0F0F0F] border-[#1F1F1F]">
             <div
               onClick={carouselDown}
@@ -167,7 +165,7 @@ function TrandingNow() {
         <div className="flex items-center ">
           {carouselMovies.map(
             (
-              { poster_path, original_title, id, vote_average, popularity },
+              { poster_path, original_title, id, release_date},
               i
             ) => (
               <div
@@ -179,33 +177,10 @@ function TrandingNow() {
                   <SingleMovieCarou
                     img={`https://image.tmdb.org/t/p/original` + poster_path}
                     leftText={
-                      <div className="text-[#999999]  w-full flex items-center justify-between ">
-                        <div className=" gap-1  pt-2   w-full">
-                          {/* <MdWatchLater /> */}
-                          {vote_average > 7 ? (
-                            <div className="flex items-center w-2.5 md:w-[13px]  gap-1 ">
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                            </div>
-                          ) : vote_average < 7 ? (
-                            <div className="flex items-center w-2.5 md:w-[13px]  gap-1">
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/three.png" alt="" />
-                            </div>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                        <div className="flex absolute bottom-[11px] right-[16px] md:bottom-[18px] md:right-[18px] items-center gap-1">
-                          <FaEye className="text-[12px] md:text-sm" />
-                          <p className="text-[12px] md:text-[14px]">{Math.floor(popularity)}k</p>
-                        </div>
+                      <div className="text-[#999999] pt-1.5 w-full flex items-center  justify-between ">
+                        <p className="text-[12px] md:text-[13px] bg-[#141414] px-2 py-1 rounded">Relese at {
+                            release_date
+                        }</p>
                       </div>
                     }
                   />
@@ -215,8 +190,9 @@ function TrandingNow() {
           )}
         </div>
       </div>
+          
     </>
   );
 }
 
-export default TrandingNow;
+export default NewRelese;
