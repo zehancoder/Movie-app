@@ -65,7 +65,7 @@ function Section5() {
             </div>
           </div>
 
-          <section className=" text-white py-16 px-6 ">
+          <section className=" text-white py-16 px-2 md:px-6 ">
             <div className="max-w-7xl mx-auto ">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {plans.map((plan, index) => (

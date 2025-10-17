@@ -151,7 +151,7 @@ function MoviesShows() {
         <Container className={"mx-auto h-full relative xl:p-0"}>
           {/* carousel arrow */}
 
-          <div className=" absolute -bottom-8 md:bottom-0 flex items-center justify-between px-12 py-5 z-20 w-full h-32 text-xl font-bold">
+          <div className=" absolute -bottom-0 md:bottom-0 flex items-center justify-between px-12 py-5 z-20 w-full md:h-[70px] h-14 lg:h-32 text-xl font-bold">
             <div
               onClick={carouselDown}
               className="px-2 md:px-3 py-2 md:py-3 bg-[#0F0F0F] carouselArrowEffect cursor-pointer border rounded-lg border-[#1F1F1F]"
@@ -230,7 +230,7 @@ function MoviesShows() {
           {/* carousel arrow */}
 
           <div
-            className={`md:mt-20 mt-24  lg:mt-28 h-full flex w-auto   transition duration-[.6s] ease-in `}
+            className={`md:mt-20 mt-20  lg:mt-28 h-full flex w-auto   transition duration-[.6s] ease-in `}
             style={{
               transform: `translateX(-${carouselTranslate}%)`,
             }}

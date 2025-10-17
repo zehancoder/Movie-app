@@ -52,13 +52,12 @@ function Section2() {
     }
   };
 
-  console.log(jsonData.length)
 
   return (
     <div className="w-[100vw] bg-[#141414] py-5 px-0 md:px-3 z-30 overflow-x-hidden">
       <Container className={"mx-auto "}>
         <div className="md:py-10 sm:py-8 py-6 lg:py-14">
-          <div className="flex items-center justify-between">
+          <div className="flex md:flex-row flex-col items-center md:gap-0 gap-4 justify-between">
             <div className="md:px-0 px-2">
               <Heading className={"font-medium"}>
                 Explore our wide variety of categories

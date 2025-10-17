@@ -25,7 +25,7 @@ function Section3() {
                       never miss a moment of entertainment.
                     </ParagraphText>
                   </div>
-                  <div className="flex flex-wrap justify-center  lg:px-6 md:px-3 px-4 items-center md:mt-10 mt-8 lg:mt-14">
+                  <div className="flex flex-wrap justify-center  lg:px-6 md:px-3 px-0 items-center md:mt-10 mt-8 lg:mt-14">
                     {
                       jsonData.map(({device, deviceImg, drescription}) => (
                         <VariousDevicesCard device={device} deviceImg={deviceImg} drescription={drescription}/>

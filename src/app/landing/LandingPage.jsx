@@ -22,7 +22,7 @@ function LandingPage() {
   return (
     <>
       <div
-        className="sticky top-0 -z-10 w-screen
+        className="sticky top-0 z-10 w-screen
     customBg sm:h-[650px] h-[550px] md:h-[660px] lg:h-[90vh]"
       >
         <Container className={"overflow-x-hidden"}>
@@ -63,9 +63,7 @@ function LandingPage() {
       <Section4 />
       <Section5 />
       <BottomSection />
-      <Routes>
-        <Route path="" />
-      </Routes>
+
     </>
   );
 }

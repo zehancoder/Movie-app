@@ -37,12 +37,12 @@ function App() {
           </div>
         </div>
       ) : (
-        <>
+        <div className="overflow-x-hidden ">
           <Animation /> 
           <Navber />
           <RoutesApp />
           <Footer/>
-        </>
+        </div>
       )}
     </>
   );

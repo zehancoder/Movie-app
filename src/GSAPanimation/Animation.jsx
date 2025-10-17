@@ -37,7 +37,7 @@ function Animation() {
       }
     );
     tl.fromTo(
-      "#search",
+      ".search",
       {
         y: -40,
         duration: 1,
@@ -50,7 +50,7 @@ function Animation() {
       }
     );
     tl.fromTo(
-      "#notifications",
+      ".notifications",
       {
         y: -40,
         duration: 1,
