@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import TrandingNow from "./TrandingNow";
 import NewRelese from "./NewRelese";
 import TopRated from "./TopRated";
+import Cartoon from "./cartoon/Cartoon";
 function MoviesSection() {
   const [movie, setMovies] = useState([]);
 
@@ -138,30 +139,27 @@ function MoviesSection() {
   const [carouselTranslate, setCarouselTranslet] = useState(0);
   // make dinamic arr for making loop and make carousel tracker;
   const [arrowArr, setArrowArr] = useState(7);
-  
+
   useEffect(() => {
-    window.addEventListener('resize' ,() => {
-        if(window.innerWidth < 1280){
-          setArrowArr(8)
-        }
-        if(window.innerWidth < 850){
-          setArrowArr(9)
-        }
-        if(window.innerWidth > 1280){
-        setArrowArr(7)
-        setCarouselNum(0)
-        setCarouselTranslet(0)
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 1280) {
+        setArrowArr(8);
       }
-    })
-  }, [window.innerWidth])
+      if (window.innerWidth < 850) {
+        setArrowArr(9);
+      }
+      if (window.innerWidth > 1280) {
+        setArrowArr(7);
+        setCarouselNum(0);
+        setCarouselTranslet(0);
+      }
+    });
+  }, [window.innerWidth]);
 
-    //end make dinamic arr for making loop and make carousel tracker;
-
-
-
+  //end make dinamic arr for making loop and make carousel tracker;
 
   const carouselUp = () => {
-    if (carouselNum >= arrowArr - 1 ) {
+    if (carouselNum >= arrowArr - 1) {
       setCarouselNum(0);
       setCarouselTranslet(0);
     } else {
@@ -173,100 +171,96 @@ function MoviesSection() {
   const carouselDown = () => {
     if (carouselNum < 1) {
       setCarouselNum(arrowArr - 1);
-      setCarouselTranslet(carouselTranslate + arrowArr === 8 ? 700 : arrowArr === 9 ? 800 : 600);
+      setCarouselTranslet(
+        carouselTranslate + arrowArr === 8 ? 700 : arrowArr === 9 ? 800 : 600
+      );
     } else {
       setCarouselNum(carouselNum - 1);
       setCarouselTranslet(carouselTranslate - 100);
     }
   };
 
-
-
-
-
   return (
-    <div className="w-[100vw] bg-[#141414] font-manrope py-5 px-3 overflow-x-hidden relative">
-      <Container
-        className={
-          "mx-auto  border border-[#1F1F1F]  md:px-10 px-8 lg:px-16 xl:px-14 rounded-lg"
-        }
-      >
-        <div className="md:py-10 sm:py-8 py-6 lg:py-14  overflow-x-hidden ">
-          {/* add movies button */}
-          <div className="absolute -top-0 z-30 ">
-            <Button className={'bg-[#ff0000] '}>
-              Movies
-            </Button>
-          </div>
-          <div className="w-full">
-            <div className="flex items-center justify-between w-full ">
-              <Heading className={""}>Our Genres</Heading>
-              <div className="w flex items-center gap-2 text-white px-3 py-3 z-20 rounded-lg text-xl font-bold border bg-[#0F0F0F] border-[#1F1F1F]">
-                <div
-                  onClick={carouselDown}
-                  className="px-2 md:px-4 py-2 md:py-3 bg-[#1a1a1a] carouselArrowEffect cursor-pointer  rounded-lg "
-                >
-                  <LuMoveLeft className="" onClick={carouselUp} />
-                </div>
+    <>
+      <div className="w-[100vw] bg-[#141414] font-manrope py-5 md:px-3 overflow-x-hidden relative">
+        <Container
+          className={
+            "mx-auto  border border-[#1F1F1F]  md:px-10 px-1.5 lg:px-16 xl:px-14 rounded-lg"
+          }
+        >
+          <div className="md:py-10 sm:py-8 py-6 lg:py-14  overflow-x-hidden ">
+            {/* add movies button */}
+            <div className="absolute -top-0 z-30 ">
+              <Button className={"bg-[#ff0000] "}>Movies</Button>
+            </div>
+            <div className="w-full">
+              <div className="flex items-center justify-between w-full ">
+                <Heading className={""}>Our Genres</Heading>
+                <div className="w flex items-center gap-2 text-white px-3 py-3 z-20 rounded-lg text-xl font-bold border bg-[#0F0F0F] border-[#1F1F1F]">
+                  <div
+                    onClick={carouselDown}
+                    className="px-2 md:px-4 py-2 md:py-3 bg-[#1a1a1a] carouselArrowEffect cursor-pointer  rounded-lg "
+                  >
+                    <LuMoveLeft className="" onClick={carouselUp} />
+                  </div>
 
-                <div className="flex flex-wrap w-[70px] md:w-20 items-center gap-1">
-                  
-                  {carouselMovies.length > 0 &&
-                    [...Array(arrowArr)].map((item, idx) => (
-                      <div
-                        className={`mx-auto  ${
-                          carouselNum === idx
-                            ? "bg-[#ff0000] h-[3px] lg:h-1 w-3 md:w-4"
-                            : "bg-[#333333] h-[1px] lg:h-0.5 w-2 md:w-3"
-                        }`}
-                      ></div>
-                    ))}
-                </div>
+                  <div className="flex flex-wrap w-[70px] md:w-20 items-center gap-1">
+                    {carouselMovies.length > 0 &&
+                      [...Array(arrowArr)].map((item, idx) => (
+                        <div
+                          className={`mx-auto  ${
+                            carouselNum === idx
+                              ? "bg-[#ff0000] h-[3px] lg:h-1 w-3 md:w-4"
+                              : "bg-[#333333] h-[1px] lg:h-0.5 w-2 md:w-3"
+                          }`}
+                        ></div>
+                      ))}
+                  </div>
 
-                <div
-                  onClick={carouselUp}
-                  className="px-2 md:px-4 bg-[#1a1a1a] py-2 md:py-3  carouselArrowEffect cursor-pointer  rounded-lg "
-                >
-                  <LuMoveRight className="" onClick={carouselDown} />
+                  <div
+                    onClick={carouselUp}
+                    className="px-2 md:px-4 bg-[#1a1a1a] py-2 md:py-3  carouselArrowEffect cursor-pointer  rounded-lg "
+                  >
+                    <LuMoveRight className="" onClick={carouselDown} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex items-center ">
-            {carouselMovies.length > 0 ? (
-              carouselMovies.map((data, idx) => (
-                <div
-                  className="shrink-0 relative md2:w-[33.5%] w-[50%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
-                  style={{ transform: `translateX(${-carouselTranslate}%)` }}
-                  id="carousel"
-                >
-                  <Link to={title[idx]}>
-                    {
-                    <CommonCarou
-                      img1={`https://image.tmdb.org/t/p/w500${data[0].backdrop_path}`}
-                      img2={`https://image.tmdb.org/t/p/w500${data[1].backdrop_path}`}
-                      img3={`https://image.tmdb.org/t/p/w500${data[2].backdrop_path}`}
-                      img4={`https://image.tmdb.org/t/p/w500${data[3].backdrop_path}`}
-                      text={title[idx]}
-                    />
-                  }
-                  </Link>
-                </div>
-              ))
-            ) : (
-              <></>
-            )}
-          </div>
+            <div className="flex items-center ">
+              {carouselMovies.length > 0 ? (
+                carouselMovies.map((data, idx) => (
+                  <div
+                    className="shrink-0 relative md2:w-[33.5%] w-[50%] sm2:w-[50%] xl:w-[25%] transition duration-[.6s]"
+                    style={{ transform: `translateX(${-carouselTranslate}%)` }}
+                    id="carousel"
+                  >
+                    <Link to={title[idx]}>
+                      {
+                        <CommonCarou
+                          img1={`https://image.tmdb.org/t/p/w500${data[0].backdrop_path}`}
+                          img2={`https://image.tmdb.org/t/p/w500${data[1].backdrop_path}`}
+                          img3={`https://image.tmdb.org/t/p/w500${data[2].backdrop_path}`}
+                          img4={`https://image.tmdb.org/t/p/w500${data[3].backdrop_path}`}
+                          text={title[idx]}
+                        />
+                      }
+                    </Link>
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
+            </div>
 
-
-          <Top10Genre/>
-          <TrandingNow/>
-          <NewRelese/>
-          <TopRated/>
-        </div>
-      </Container>
-      
-    </div>
+            <Top10Genre />
+            <TrandingNow />
+            <NewRelese />
+            <TopRated />
+          </div>
+        </Container>
+      </div>
+      <Cartoon />
+    </>
   );
 }
 
