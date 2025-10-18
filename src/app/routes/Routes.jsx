@@ -5,6 +5,9 @@ import MoviesShows from "../pages/MoviesShows/MoviesShows";
 import Support from "../pages/Support/Support";
 import Subscription from "../pages/Subscription/Subscription";
 import Play from "../pages/videoPlay/Play";
+import AnimationPlay from "../pages/videoPlay/AnimationPlay";
+import CartoonMain from "../pages/MoviesShows/cartoon/CartoonMain";
+
 function RoutesApp({ children }) {
   return (
     <>
@@ -13,8 +16,10 @@ function RoutesApp({ children }) {
         <Route path="/MoviesShows" element={<MoviesShows />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/Subscriptions" element={<Subscription />} />
+        <Route path="/Animations" element={<CartoonMain />} />
 
-        <Route path="/MoviesShows/video/:id" element={<Play />} />
+        <Route path={"/MoviesShows/video/:id"} element={<Play />} />
+        <Route path={"/Animations/video/:id"} element={<AnimationPlay />} />
       </Routes>
     </>
   );

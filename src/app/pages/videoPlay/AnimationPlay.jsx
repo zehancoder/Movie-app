@@ -11,7 +11,7 @@ import { Link, Route, Routes, useParams } from "react-router-dom";
 import { upComeing, relatedMovies } from "../../../redux/dataFetch";
 import { FaEye } from "react-icons/fa6";
 
-function Play() {
+function AnimationPlay() {
   const { id } = useParams();
   const [video, setVideo] = useState({
     published_at: "",
@@ -44,8 +44,7 @@ function Play() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const size =
-    video.size.toString().split("").slice(0, 1).join("") +
+  const size = video.size && video.size.toString().split("").slice(0, 1).join("") +
     "." +
     video.size
       .toString()
@@ -56,31 +55,10 @@ function Play() {
   // show realted movies with fetch data
   const [carouselNum, setCarouselNum] = useState(0);
 
-  const [movie, setMovies] = useState([]);
-
-  const dispatch = useDispatch();
-  // getting data from tmdb api
-
-  useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=4",
-      options
-    )
-      .then((res) => res.json())
-      .then((res) => setMovies(res.results))
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    if (movie.length === 0) {
-      return;
-    } else {
-      dispatch(relatedMovies(movie));
-    }
-  }, [movie]);
+ 
 
   // get all movies from redux store
-  const trandingPage1 = useSelector((state) => state.relatedMovies);
+  const trandingPage1 = useSelector((state) => state.cartoon2);
 
   const trandingPage1Movie = trandingPage1[0];
   // successfuly get data from redux store
@@ -95,7 +73,7 @@ function Play() {
         }
       }
     }, 500);
-  }, [movie, trandingPage1Movie]);
+  }, [ trandingPage1Movie]);
 
   // carousel count number
   const [carouselTranslate, setCarouselTranslet] = useState(0);
@@ -249,7 +227,7 @@ function Play() {
                 key={i}
                 style={{ transform: `translateX(-${carouselTranslate}%)` }}
               >
-                <Link to={`video/${id}`}>
+                <Link to={`/Animations/video/${id}`}>
                   <SingleMovieCarou
                     img={`https://image.tmdb.org/t/p/original` + poster_path}
                     leftText={
@@ -299,4 +277,4 @@ function Play() {
   );
 }
 
-export default Play;
+export default AnimationPlay;

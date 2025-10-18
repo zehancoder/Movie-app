@@ -21,15 +21,16 @@ function NavToggle() {
   // end
   const toggleData = useSelector((state) => state.toggleNav);
 
-  toggleData ? document.body.style.overflow = "hidden" : document.body.style.overflowY = "auto"
-  
+  toggleData
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflowY = "auto");
 
   return (
     <div className=" h-full w-full  ">
       <div className="h-full w-full">
         <div className="px-4 py-12 flex flex-col h-full z-50 text-center bg-[#0F0F0F] rounded-lg border-3 border-[#1a1a1a]  font-manrope ">
           <NavLink
-            onClick = {() => dispatch(closeNav())}
+            onClick={() => dispatch(closeNav())}
             to="/"
             className={({ isActive }) =>
               `links  ${
@@ -43,7 +44,7 @@ function NavToggle() {
           </NavLink>
 
           <NavLink
-            onClick = {() => dispatch(closeNav())}
+            onClick={() => dispatch(closeNav())}
             to="/MoviesShows"
             className={({ isActive }) =>
               `links  ${
@@ -57,7 +58,21 @@ function NavToggle() {
           </NavLink>
 
           <NavLink
-            onClick = {() => dispatch(closeNav())}
+          onClick={() => dispatch(closeNav())}
+            to="/Animations"
+            className={({ isActive }) =>
+              `links animate ${
+                isActive
+                  ? "text-white bg-[#1a1a1a]"
+                  : "text-[#BFBFBF]  bg-transparent"
+              }`
+            }
+          >
+            Animations
+          </NavLink>
+
+          <NavLink
+            onClick={() => dispatch(closeNav())}
             to="/Support"
             className={({ isActive }) =>
               `links  ${
@@ -71,7 +86,7 @@ function NavToggle() {
           </NavLink>
 
           <NavLink
-            onClick = {() => dispatch(closeNav())}
+            onClick={() => dispatch(closeNav())}
             to="/Subscriptions"
             className={({ isActive }) =>
               `links  ${
@@ -85,14 +100,9 @@ function NavToggle() {
           </NavLink>
 
           <div className="flex justify-center mt-6 items-center lg:gap-6 md:gap-4 gap-2 xl:gap-8 text-gray-100 text-xl md:text-2xl">
-            <IoSearch
-              className="cursor-pointer"
-              onClick={ShowSearchHandle}
-            />
+            <IoSearch className="cursor-pointer" onClick={ShowSearchHandle} />
 
-            <IoMdNotificationsOutline
-              className="cursor-pointer"
-            />
+            <IoMdNotificationsOutline className="cursor-pointer" />
           </div>
         </div>
       </div>

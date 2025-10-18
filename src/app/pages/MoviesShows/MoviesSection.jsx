@@ -259,7 +259,6 @@ function MoviesSection() {
           </div>
         </Container>
       </div>
-      <Cartoon />
     </>
   );
 }

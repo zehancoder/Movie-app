@@ -67,6 +67,19 @@ function Navber() {
                     </NavLink>
 
                     <NavLink
+                      to="/Animations"
+                      className={({ isActive }) =>
+                        `links animate ${
+                          isActive
+                            ? "text-white bg-[#1a1a1a]"
+                            : "text-[#BFBFBF]  bg-transparent"
+                        }`
+                      }
+                    >
+                      Animations
+                    </NavLink>
+
+                    <NavLink
                       to="/Support"
                       className={({ isActive }) =>
                         `links animate ${

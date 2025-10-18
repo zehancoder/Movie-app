@@ -11,6 +11,8 @@ import Heading from "../../../common/Heading";
 import Button from "../../../common/Button";
 import { Link } from "react-router-dom";
 import Section2 from "./Section2";
+import Section3 from "./Section3";
+import Section4 from "./Section4";
 
 function Cartoon() {
   const [movie, setMovies] = useState([]);
@@ -208,7 +210,7 @@ function Cartoon() {
           {/* add movies button */}
           <div className="absolute -top-0 z-30 ">
             <Button className={"bg-[#ff0000] customBtnHoverEffect "}>
-              Animation
+              Animations
             </Button>
           </div>
           <div className="w-full">
@@ -270,6 +272,8 @@ function Cartoon() {
             )}
           </div>
           <Section2/>
+          <Section3/>
+          <Section4/>
         </div>
       </Container>
     </div>

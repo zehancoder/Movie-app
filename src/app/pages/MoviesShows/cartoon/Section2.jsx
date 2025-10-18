@@ -76,7 +76,6 @@ function Section2() {
   const page2Movie = page2Data[0];
   const page1Movie = page1Data[0];
 
-  console.log(page1Movie, page2Movie)
   // successfuly get data from redux store
 
   // get 4 movies from playingData for showing in carousel
@@ -208,7 +207,7 @@ function Section2() {
       <div>
         <div className="w-full lg:py-12 md:py-10 sm:py-8 py-6">
           <div className="flex items-center justify-between w-full ">
-            <Heading className={""}>Popular Top 10 In Genres</Heading>
+            <Heading className={""}>Popular Top 10 In Animations</Heading>
             {/* carousel items */}
             <div className="w flex items-center gap-2 text-white px-3 py-3 z-20 rounded-lg text-xl font-bold border bg-[#0F0F0F] border-[#1F1F1F]">
               <div
