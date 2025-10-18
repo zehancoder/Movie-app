@@ -30,7 +30,7 @@ function BottomSection() {
               </div>
 
               {/* Right button */}
-              <Button className={"bg-[#e50000]"} href="#">
+              <Button className={"bg-[#e50000] customBtnHoverEffect"} href="#">
                 Start a Free Trial
               </Button>
             </div>

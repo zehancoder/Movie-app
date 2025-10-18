@@ -45,7 +45,7 @@ function Section2() {
     console.log("down");
     if (carouselNum < 1) {
       setCarouselNum(arrowArr - 1);
-      setCarouselTranslet(carouselTranslate + arrowArr === 10 ? 700 : arrowArr === 9 ? 800 : 600);
+      setCarouselTranslet(carouselTranslate + arrowArr === 10 ? 700 : arrowArr === 8 ? 700 : 600);
     } else {
       setCarouselNum(carouselNum - 1);
       setCarouselTranslet(carouselTranslate - 100);

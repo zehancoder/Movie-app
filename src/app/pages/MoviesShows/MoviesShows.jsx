@@ -258,7 +258,7 @@ function MoviesShows() {
                       </ParagraphText>
                       <div className="flex items-center justify-center mt-4">
                         <Button
-                          className={"bg-[#ff0000]  "}
+                          className={"bg-[#ff0000] customBtnHoverEffect"}
                         >
                           <Link to={`video/${id}`} className="flex items-center gap-2">
                             <IoPlay /> Play Now

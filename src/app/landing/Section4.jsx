@@ -78,7 +78,7 @@ function Section4() {
               </ParagraphText>
             </div>
             <div className="md:mt-0 mt-4">
-              <Button className="bg-[#e50000] ">Ask a Question</Button>
+              <Button className="bg-[#e50000] customBtnHoverEffect">Ask a Question</Button>
             </div>
           </div>
 

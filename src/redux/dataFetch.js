@@ -8,6 +8,7 @@ const initialState = {
   trandingNow2: [],
   upComeing: [], 
   topRated: [], 
+  relatedMovies: [],
   toggleNav: false,
 };
 
@@ -41,11 +42,14 @@ export const movieSlice = createSlice({
     },
     closeNav: (state, actions) => {
       state.toggleNav = false;
+    },
+    relatedMovies: (state, actions) => {
+      state.relatedMovies.push(actions.payload)
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { nowPlaying, page2, page3, trandingNow1, trandingNow2, upComeing, topRated, openNav,closeNav } = movieSlice.actions;
+export const { nowPlaying, page2, page3, trandingNow1, trandingNow2, upComeing, topRated, openNav,closeNav, relatedMovies } = movieSlice.actions;
 
 export default movieSlice.reducer;

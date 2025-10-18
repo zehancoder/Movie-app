@@ -265,6 +265,7 @@ function MoviesSection() {
           <TopRated/>
         </div>
       </Container>
+      
     </div>
   );
 }

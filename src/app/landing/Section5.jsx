@@ -89,10 +89,10 @@ function Section5() {
                     </div>
 
                     <div className="flex gap-4 ">
-                      <Button className={"bg-[#141414] lg:text-[15px] lg:tracking-wide border border-[#262626]"}>
+                      <Button className={"bg-[#141414] lg:text-[15px] carouselArrowEffect  lg:tracking-wide border border-[#262626]"}>
                         Start Free Trail
                       </Button>
-                      <Button className={"bg-[#E50000] lg:text-[15px] lg:tracking-wide"}>Choose Plan</Button>
+                      <Button className={"bg-[#E50000] customBtnHoverEffect lg:text-[15px] lg:tracking-wide"}>Choose Plan</Button>
                     </div>
                   </div>
                 ))}

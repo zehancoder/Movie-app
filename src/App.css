@@ -59,6 +59,13 @@ li {
   position: relative;
   overflow-x: hidden;
 }
+.customGradientColor2 {
+  background: linear-gradient(50deg, #0f0f0f 60%, #150000 130%, #ff0000 50%);
+  transition: all 0.4s;
+  z-index: 9;
+  position: relative;
+  overflow-x: hidden;
+}
 .customGradientColor:hover {
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.582);
 

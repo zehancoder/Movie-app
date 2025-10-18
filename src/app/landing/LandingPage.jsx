@@ -46,7 +46,7 @@ function LandingPage() {
               <div id="landingButton">
                 <Button
                   className={
-                    "flex bg-[#e50000] items-center gap-2 mx-auto md:mt-4 mt-2 lg:mt-5 "
+                    "flex bg-[#e50000] customBtnHoverEffect items-center gap-2 mx-auto md:mt-4 mt-2 lg:mt-5 "
                   }
                 >
                   <FaPlay className="text-[15px]" />
