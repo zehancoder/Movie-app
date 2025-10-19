@@ -104,7 +104,7 @@ const FetchWithCategory = ({ genreId, page, dataNumber }) => {
                               </div>
                             )}
                           </div>
-                          <div className="flex  z-50 items-center gap-1">
+                          <div className="flex  z-30 items-center gap-1">
                             <FaEye className="text-[12px] md:text-sm" />
                             <p className="text-[12px] md:text-[14px]">
                               {Math.floor(popularity)}k

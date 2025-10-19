@@ -22,6 +22,11 @@
   position: absolute;
 }
 
+html, body{
+    scrollbar-width: none; /* Firefox */
+
+}
+
 body {
   overflow-x: hidden;
   background-color: #141414;

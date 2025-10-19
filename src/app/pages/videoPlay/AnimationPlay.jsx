@@ -188,7 +188,7 @@ function AnimationPlay() {
             <div>
               <div>
                 <div className="flex items-center font-manrope lg:py-12 md:py-10 sm:py-6 py-4 justify-between">
-                  <Heading>More Movies</Heading>
+                  <Heading>More Animations</Heading>
                   <div className="w flex items-center gap-2 text-white px-3 py-3 z-20 rounded-lg text-xl font-bold border bg-[#0F0F0F] border-[#1F1F1F]">
                     <div
                       onClick={carouselDown}
