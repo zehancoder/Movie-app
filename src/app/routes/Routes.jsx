@@ -7,6 +7,7 @@ import Subscription from "../pages/Subscription/Subscription";
 import Play from "../pages/videoPlay/Play";
 import AnimationPlay from "../pages/videoPlay/AnimationPlay";
 import CartoonMain from "../pages/MoviesShows/cartoon/CartoonMain";
+import ActionsAdve from "../pages/MoviesShows/movieCategories/ActionsAdve";
 
 function RoutesApp({ children }) {
   return (
@@ -20,6 +21,7 @@ function RoutesApp({ children }) {
 
         <Route path={"/MoviesShows/video/:id"} element={<Play />} />
         <Route path={"/Animations/video/:id"} element={<AnimationPlay />} />
+        <Route path={"/MoviesShows/Action & Adventure"} element={<ActionsAdve />} />
       </Routes>
     </>
   );
