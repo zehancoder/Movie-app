@@ -198,7 +198,7 @@ function TopRated() {
                             <></>
                           )}
                         </div>
-                        <div className="flex absolute bottom-[11px] right-[16px] md:bottom-[18px] md:right-[18px] items-center gap-1">
+                        <div className="flex absolute bottom-[6px] right-[16px] md:bottom-[6px] md:right-[18px] items-center gap-1">
                           <FaEye className="text-[12px] md:text-sm" />
                           <p className="text-[12px] md:text-[14px]">
                             {Math.floor(popularity)}k

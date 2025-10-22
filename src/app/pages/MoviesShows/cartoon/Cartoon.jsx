@@ -142,16 +142,16 @@ function Cartoon() {
 
   // moves category title
   const title = [
-    "Animal",
-    "Magical",
-    "Slice of Life",
-    "Educational",
-    "Music",
-    "Horror",
-    "Sports",
-    "Parody",
-    "Historical",
-    "Romance",
+    "Cartoon Bear",
+    "Cartoon Owl",
+    "Children Cartoon",
+    "Cartoon Horse",
+    "Cartoon Dog",
+    "Kids Cartoon",
+    "Cartoon Pig",
+    "Cartoon Fly",
+    "Cartoon Wolf",
+    "Cartoon Animal",
   ];
 
   // carousel count number
@@ -272,10 +272,10 @@ function Cartoon() {
               <></>
             )}
           </div>
-          <Section2/>
-          <Section3/>
-          <Section4/>
-          <Section5/>
+          <Section2 />
+          <Section3 />
+          <Section4 />
+          <Section5 />
         </div>
       </Container>
     </div>
