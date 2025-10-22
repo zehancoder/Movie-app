@@ -188,3 +188,14 @@ li {
   background: linear-gradient(to top, rgba(24, 23, 23, 0.692), transparent);
   
 } 
+
+/* single card hover effect when hover it show like cart and play btn */
+.showPlaylikeOnhover{
+  transform: translateY(100%);
+  transition: all .3s;
+  
+}
+
+.showPlaylikeOnhoverParent:hover .showPlaylikeOnhover{
+  transform: translateY(0);
+}

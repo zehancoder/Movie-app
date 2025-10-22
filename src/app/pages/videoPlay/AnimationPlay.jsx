@@ -44,7 +44,7 @@ function AnimationPlay() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const size = video.size && video.size.toString().split("").slice(0, 1).join("") +
+  const size = video.size.toString().split("").slice(0, 1).join("") +
     "." +
     video.size
       .toString()

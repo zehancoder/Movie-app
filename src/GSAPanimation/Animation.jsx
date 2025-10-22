@@ -2,6 +2,7 @@ import React from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import { useLocation } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 function Animation() {
@@ -155,6 +156,21 @@ function Animation() {
         },
       }
     );
+    gsap.fromTo(".scrollAnimation", {
+      opacity: 0,
+      y: 150,
+      
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.,
+      scrollTrigger: {
+        trigger: ".scrollAnimation",
+        start: "top 50%",
+        end: "top 80%",
+      }
+    })
   };
 
   useGSAP(() => {

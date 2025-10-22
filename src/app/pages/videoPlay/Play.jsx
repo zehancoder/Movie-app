@@ -249,7 +249,7 @@ function Play() {
                 key={i}
                 style={{ transform: `translateX(-${carouselTranslate}%)` }}
               >
-                <Link to={`video/${id}`}>
+                <Link to={`/MoviesShows/video/${id}`}>
                   <SingleMovieCarou
                     img={`https://image.tmdb.org/t/p/original` + poster_path}
                     leftText={

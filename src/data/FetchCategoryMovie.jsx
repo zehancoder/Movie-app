@@ -4,6 +4,7 @@ import { category } from "../redux/dataFetch";
 import SingleMovieCarou from "../app/common/SingleMovieCarou";
 import ParagraphText from "../app/common/ParagraphText";
 import { FaEye } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const FetchWithCategory = ({ genreId, page, dataNumber }) => {
   const [movies, setMovies] = useState({
     page: "",
@@ -43,7 +44,18 @@ const FetchWithCategory = ({ genreId, page, dataNumber }) => {
   }, [movies]);
 
   const data = useSelector((state) => state.category);
-  // console.log(data[0]);
+
+  const [afterData, setAfterData] = useState([]);
+  useEffect(() => {
+    if(data.length > 1){
+      setTimeout(() => {
+        setAfterData(data)
+      }, 500)
+    }
+  }, [data])
+
+  console.log(movies)
+
 
   const genres = [
     { name: "Action & Adventure", id: 28 },
@@ -62,10 +74,10 @@ const FetchWithCategory = ({ genreId, page, dataNumber }) => {
     <div>
       <div>
         <div className="flex items-center flex-wrap">
-          {data.length > 0 &&
-            data[dataNumber].data.map(
-              ({ poster_path, original_title, vote_average, popularity }) => (
-                <div className="lg:w-[16.66%] md2:w-[20%] sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%] cursor-pointer">
+          {afterData.length !== 0 ?
+            afterData[dataNumber].data.map(
+              ({ poster_path, original_title, vote_average, popularity, id }) => (
+                <Link to={`/MoviesShows/video/${id}`} className="lg:w-[16.66%] md2:w-[20%] sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%] cursor-pointer scrollAnimation">
                   <div>
                     <div>
                       <SingleMovieCarou
@@ -114,9 +126,9 @@ const FetchWithCategory = ({ genreId, page, dataNumber }) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               )
-            )}
+            ) : <></>} 
         </div>
       </div>
     </div>
