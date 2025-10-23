@@ -22,6 +22,8 @@ const initialState = {
   cartoon6: [],
   // adding movie categories
   category: [],
+  likeVideos: [],
+  likeAnimations: [],
 };
 
 export const movieSlice = createSlice({
@@ -87,6 +89,27 @@ export const movieSlice = createSlice({
     category: (state, actions) => {
       state.category.push(actions.payload);
     },
+    likeVideos: (state, actions) => {
+      state.likeVideos.push(actions.payload);
+      
+
+    },
+    removeLike: (state, actions) => {
+      state.likeVideos = state.likeVideos.filter((data) => data.data.id !== actions.payload.data.id)
+      
+      console.log(actions.payload)
+    },
+    // storing animation you liked
+    likeAnimations: (state, actions) => {
+      state.likeAnimations.push(actions.payload);
+      
+
+    },
+    removeLikeAnimations: (state, actions) => {
+      state.likeAnimations = state.likeAnimations.filter((data) => data.data.id !== actions.payload.data.id)
+      
+      console.log(actions.payload)
+    },
   },
 });
 
@@ -110,6 +133,10 @@ export const {
   cartoon5,
   cartoon6,
   category,
+  likeVideos,
+  removeLike,
+  likeAnimations,
+  removeLikeAnimations
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

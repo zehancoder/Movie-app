@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import MoviesSection from "./MoviesSection";
 import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { likeVideos, removeLike } from "../../../redux/dataFetch";
 
 function MoviesShows() {
   // making scroll bar when path name is changed
@@ -143,7 +144,30 @@ function MoviesShows() {
     startAutoPlay();
   };
 
+    // store like video in redux;
 
+  const likeHandle = (likeItems) => {
+    document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+      ? dispatch(removeLike({ like: true, data: likeItems }))
+      : dispatch(likeVideos({ like: true, data: likeItems }));
+
+    document.getElementById(`${likeItems.id}`).style.backgroundColor =
+      document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+        ? "#0F0F0F"
+        : "red";
+  };
+
+  const likeData = useSelector((state) => state.likeVideos);
+
+  //track like vidoes from redux store
+  const likeTrack = () =>
+    likeData.map(({ data }) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id}`).style.background = "red";
+      }, 400);
+    });
+
+  likeTrack();
 
   return (
     <>
@@ -257,10 +281,11 @@ function MoviesShows() {
                         {overview}
                       </ParagraphText>
                       <div className="flex items-center justify-center mt-4">
-                        <Button
-                          className={"bg-[#ff0000] customBtnHoverEffect"}
-                        >
-                          <Link to={`video/${id}`} className="flex items-center gap-2">
+                        <Button className={"bg-[#ff0000] customBtnHoverEffect"}>
+                          <Link
+                            to={`video/${id}`}
+                            className="flex items-center gap-2"
+                          >
                             <IoPlay /> Play Now
                           </Link>
                         </Button>
@@ -268,7 +293,11 @@ function MoviesShows() {
                           <span className="px-3 md:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                             <FiPlus />
                           </span>{" "}
-                          <span className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                          <span
+                            id={id}
+                            onClick={() => likeHandle(carouselMovies[idx])}
+                            className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                          >
                             <AiFillLike />
                           </span>
                           <span className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">

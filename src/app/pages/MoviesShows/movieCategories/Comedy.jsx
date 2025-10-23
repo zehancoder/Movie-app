@@ -12,6 +12,7 @@ import { AiFillLike, AiFillSound } from "react-icons/ai";
 import { FiPlus } from "react-icons/fi";
 import { FaEye } from "react-icons/fa6";
 import SingleMovieCarou from "../../../common/SingleMovieCarou";
+import { removeLike, likeVideos } from "../../../../redux/dataFetch";
 function ActionsAdve() {
   const [movie, setMovies] = useState([]);
 
@@ -42,13 +43,37 @@ function ActionsAdve() {
     movie.length > 0 && dispatch(category(movie));
   }, [movie]);
 
-
   const mainData = useSelector((state) => state.category);
 
   // const [page, setPage] = useState(2);
   const newDataImport = () => {
     setPage((prev) => prev + 1);
   };
+
+  // store like video in redux;
+
+  const likeHandle = (likeItems) => {
+    document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+      ? dispatch(removeLike({ like: true, data: likeItems }))
+      : dispatch(likeVideos({ like: true, data: likeItems }));
+
+    document.getElementById(`${likeItems.id}`).style.backgroundColor =
+      document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+        ? "#0F0F0F"
+        : "red";
+  };
+
+  const likeData = useSelector((state) => state.likeVideos);
+
+  //track like vidoes from redux store
+  const likeTrack = () =>
+    likeData.map(({ data }) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id}`).style.background = "red";
+      }, 400);
+    });
+
+  likeTrack();
 
   return (
     <div className="overflow-hidden w-screen py-8">
@@ -61,7 +86,7 @@ function ActionsAdve() {
               <div>
                 <div>
                   <div className="flex items-center flex-wrap">
-                   {movie.map((data) =>
+                    {movie.map((data) =>
                       data.map(
                         ({
                           poster_path,
@@ -69,10 +94,8 @@ function ActionsAdve() {
                           vote_average,
                           popularity,
                           id,
-                        }) => (
-                          <div
-                            className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation"
-                          >
+                        } ,idx) => (
+                          <div className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation">
                             <div>
                               <div className="">
                                 <SingleMovieCarou
@@ -96,7 +119,13 @@ function ActionsAdve() {
                                           <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                                             <FiPlus />
                                           </span>{" "}
-                                          <span className="px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                          <span
+                                            id={id}
+                                            onClick={() =>
+                                              likeHandle(data[idx])
+                                            }
+                                            className={`px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect `}
+                                          >
                                             <AiFillLike />
                                           </span>
                                           <span className="px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">

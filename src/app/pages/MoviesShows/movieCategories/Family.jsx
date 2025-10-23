@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import FetchWithCategory from "../../../../data/FetchCategoryMovie";
 import Heading from "../../../common/Heading";
 import Button from "../../../common/Button";
-import { category } from "../../../../redux/dataFetch";
+import { category, likeVideos, removeLike } from "../../../../redux/dataFetch";
 import { Link } from "react-router-dom";
 import { IoPlay } from "react-icons/io5";
 import { AiFillLike, AiFillSound } from "react-icons/ai";
@@ -50,6 +50,31 @@ function Family() {
     setPage((prev) => prev + 1);
   };
 
+    // store like video in redux;
+
+  const likeHandle = (likeItems) => {
+    document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+      ? dispatch(removeLike({ like: true, data: likeItems }))
+      : dispatch(likeVideos({ like: true, data: likeItems }));
+
+    document.getElementById(`${likeItems.id}`).style.backgroundColor =
+      document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+        ? "#0F0F0F"
+        : "red";
+  };
+
+  const likeData = useSelector((state) => state.likeVideos);
+
+  //track like vidoes from redux store
+  const likeTrack = () =>
+    likeData.map(({ data }) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id}`).style.background = "red";
+      }, 400);
+    });
+
+  likeTrack();
+
   return (
     <div className="overflow-hidden w-screen py-8">
       <div className="h-28"></div>
@@ -69,7 +94,7 @@ function Family() {
                           vote_average,
                           popularity,
                           id,
-                        }) => (
+                        }, idx) => (
                           <div
                             className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation"
                           >
@@ -96,7 +121,13 @@ function Family() {
                                           <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                                             <FiPlus />
                                           </span>{" "}
-                                          <span className="px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                         <span
+                                            id={id}
+                                            onClick={() =>
+                                              likeHandle(data[idx])
+                                            }
+                                            className={`px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect `}
+                                          >
                                             <AiFillLike />
                                           </span>
                                           <span className="px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">

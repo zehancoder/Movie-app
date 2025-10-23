@@ -16,19 +16,31 @@ import Family from "../pages/MoviesShows/movieCategories/Family";
 import Kids from "../pages/MoviesShows/movieCategories/Kids";
 import Mystrey from "../pages/MoviesShows/movieCategories/Mystery";
 import News from "../pages/MoviesShows/movieCategories/News";
+import LikeVideos from "../common/LikeVideos";
+import CartoonAnimal from "../pages/MoviesShows/cartoon/categories/CartoonAnimal";
+import CartoonBear from "../pages/MoviesShows/cartoon/categories/CartoonBear";
+import CartoonFly from "../pages/MoviesShows/cartoon/categories/CartoonFly";
+import CartoonOwl from "../pages/MoviesShows/cartoon/categories/CartoonOwl";
+import ChildrenCartoon from "../pages/MoviesShows/cartoon/categories/ChildrenCartoon";
+import CartoonHorse from "../pages/MoviesShows/cartoon/categories/CartoonHorse";
+import CartoonPig from "../pages/MoviesShows/cartoon/categories/CartoonPig";
+import CartoonWolf from "../pages/MoviesShows/cartoon/categories/CartoonWolf";
+import CartoonDog from "../pages/MoviesShows/cartoon/categories/CarttonDog";
 
 function RoutesApp({ children }) {
   return (
     <>
       <Routes>
+        {/* nav links route */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/MoviesShows" element={<MoviesShows />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/Subscriptions" element={<Subscription />} />
         <Route path="/Animations" element={<CartoonMain />} />
-
+        {/* movie & animations play route */}
         <Route path={"/MoviesShows/video/:id"} element={<Play />} />
         <Route path={"/Animations/video/:id"} element={<AnimationPlay />} />
+        {/* movies categories routes */}
         <Route path={"/MoviesShows/Action & Adventure"} element={<ActionsAdve />} />
         <Route path={"/MoviesShows/Comedy"} element={<Comedy />} />
         <Route path={"/MoviesShows/Crime"} element={<Crime />} />
@@ -38,6 +50,18 @@ function RoutesApp({ children }) {
         <Route path={"/MoviesShows/Kids"} element={<Kids />} />
         <Route path={"/MoviesShows/Mystry"} element={<Mystrey />} />
         <Route path={"/MoviesShows/News"} element={<News />} />
+        {/* video likes routes */}
+        <Route path={"/likeVideos"} element={<LikeVideos />} />
+        {/* add animations routes */}
+        <Route path={"/Animations/cartoon/Cartoon Animal"} element = {<CartoonAnimal></CartoonAnimal>}/>
+        <Route path={"/Animations/cartoon/Cartoon Bear"} element = {<CartoonBear></CartoonBear>}/>
+        <Route path={"/Animations/cartoon/Cartoon Fly"} element = {<CartoonFly></CartoonFly>}/>
+        <Route path={"/Animations/cartoon/Cartoon Owl"} element = {<CartoonOwl></CartoonOwl>}/>
+        <Route path={"/Animations/cartoon/Children Cartoon"} element = {<ChildrenCartoon></ChildrenCartoon>}/>
+        <Route path={"/Animations/cartoon/Cartoon Horse"} element = {<CartoonHorse></CartoonHorse>}/>
+        <Route path={"/Animations/cartoon/Cartoon Pig"} element = {<CartoonPig></CartoonPig>}/>
+        <Route path={"/Animations/cartoon/Cartoon Wolf"} element = {<CartoonWolf></CartoonWolf>}/>
+        <Route path={"/Animations/cartoon/Cartoon Dog"} element = {<CartoonDog></CartoonDog>}/>
       </Routes>
     </>
   );

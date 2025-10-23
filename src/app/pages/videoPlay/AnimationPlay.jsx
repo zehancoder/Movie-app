@@ -17,7 +17,7 @@ function AnimationPlay() {
     published_at: "",
     name: "",
     key: "",
-    size: "",
+    size: "1080",
   });
   const options = {
     method: "GET",
