@@ -123,7 +123,7 @@ function MoviesSection() {
   // moves category title
   const title = [
     "Action & Adventure",
-    "Animation",
+    "Horror",
     "Comedy",
     "Crime",
     "Documentary",

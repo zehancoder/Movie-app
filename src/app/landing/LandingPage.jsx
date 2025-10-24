@@ -11,6 +11,7 @@ import Section4 from "./Section4";
 import Section5 from "./Section5";
 import BottomSection from "./BottomSection";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const { pathname } = useLocation();
@@ -44,14 +45,16 @@ function LandingPage() {
                 </ParagraphText>
               </div>
               <div id="landingButton">
-                <Button
-                  className={
-                    "flex bg-[#e50000] customBtnHoverEffect items-center gap-2 mx-auto md:mt-4 mt-2 lg:mt-5 "
-                  }
-                >
-                  <FaPlay className="text-[15px]" />
-                  Start Watching Now
-                </Button>
+                <Link to={'/MoviesShows'}>
+                  <Button
+                    className={
+                      "flex bg-[#e50000] customBtnHoverEffect items-center gap-2 mx-auto md:mt-4 mt-2 lg:mt-5 "
+                    }
+                  >
+                    <FaPlay className="text-[15px]" />
+                    Start Watching Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -63,7 +66,6 @@ function LandingPage() {
       <Section4 />
       <Section5 />
       <BottomSection />
-
     </>
   );
 }

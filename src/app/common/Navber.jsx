@@ -33,8 +33,6 @@ function Navber() {
     setOpenSaved(!openSaved);
   };
 
-  
-
   return (
     <div className=" ">
       <div
@@ -51,7 +49,11 @@ function Navber() {
               <nav>
                 <div className="flex items-center justify-between ">
                   <Link to={"/"} id="logo">
-                    <img src="/images/Logo.png" className="w-auto" alt="" />
+                    <img
+                      src="/images/Logo.png"
+                      className="w-36 sm2:w-44 md:w-auto"
+                      alt=""
+                    />
                   </Link>
                   <div className="px-4 py-4 z-50 bg-[#0F0F0F] rounded-lg border-3 border-[#1a1a1a] font-manrope lg:flex  hidden">
                     <NavLink
@@ -177,6 +179,7 @@ function Navber() {
           >
             <div className="  text-white font-manrope text-lg items-center ">
               <Link
+                onClick={savedHandle}
                 to={"/savedVideos"}
                 className="text-[15px] flex items-center gap-2 footerHoverEffect cursor-pointer"
               >
@@ -186,6 +189,7 @@ function Navber() {
               <Link
                 to={"/likeVideos"}
                 className="text-[15px] flex items-center gap-2 footerHoverEffect cursor-pointer mt-4"
+                onClick={savedHandle}
               >
                 Liked Videos
                 <AiFillLike className="text-lg font-medium" />

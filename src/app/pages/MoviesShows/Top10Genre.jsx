@@ -119,9 +119,9 @@ function Top10Genre() {
   const title = [
     "Drama",
     "Comedy",
-    "Action",
+    "Action & Adventure",
     "Horror",
-    "Mystery",
+    "Mystry",
     "Thriller",
     "Sci-Fi",
     "Romance",

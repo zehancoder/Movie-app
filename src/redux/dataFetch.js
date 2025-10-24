@@ -108,6 +108,26 @@ export const movieSlice = createSlice({
     removeLikeAnimations: (state, actions) => {
       state.likeAnimations = state.likeAnimations.filter((data) => data.data.id !== actions.payload.data.id)
       
+    },
+    savedMovies: (state, actions) => {
+      state.savedMovies.push(actions.payload);
+      
+
+    },
+    removeSavedMovies: (state, actions) => {
+      state.savedMovies = state.savedMovies.filter((data) => data.data.id !== actions.payload.data.id)
+      
+      console.log(actions.payload)
+    },
+    // storing animation you liked
+    savedAnimations: (state, actions) => {
+      state.savedAnimations.push(actions.payload);
+      
+
+    },
+    removeSavedAnimations: (state, actions) => {
+      state.savedAnimations = state.savedAnimations.filter((data) => data.data.id !== actions.payload.data.id)
+      
       console.log(actions.payload)
     },
   },

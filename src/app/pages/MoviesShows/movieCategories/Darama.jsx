@@ -82,7 +82,7 @@ function Drama() {
       <div className="h-28"></div>
       <Container className={"mx-auto h-full relative xl:p-0"}>
         <div>
-          <Heading>Comedy</Heading>
+          <Heading>Drama</Heading>
           <div className="py-5">
             {movie.length > 0 && (
               <div>

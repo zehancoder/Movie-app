@@ -163,11 +163,11 @@ function Play() {
 
   return (
     <>
-      <div className="py-8">
-        <div className="text-white overflow-hidden w-screen py-8 md:h-[700px] h-[600px] lg:h-[1000px] ">
+      <div className="py-5 lg:py-8 w-screen">
+        <div className="text-white overflow-hidden w-screen lg:py-8 md:h-[600px] h-[400px] sm2:h-[500px] lg:h-[700px] xl:h-[800px] 2xl:h-[1000px]">
           <div className="h-24 w-full"></div>
           <Container className="mx-auto h-full relative xl:p-0  overflow-hidden">
-            <div className="2xl:h-[90%] xl:h-[80%] lg:h-[75%] lg:w-[87%] md:h-[70%] h-[60%] w-[95%] rounded-lg overflow-hidden md:w-[80%] xl:w-[90%] mx-auto 2xl:w-full  ">
+            <div className="2xl:h-[90%] xl:h-[86%] lg:h-[85%] lg:w-[87%] md:h-[70%] h-[70%] sm2:h-[80%] w-[95%] rounded-lg overflow-hidden md:w-[80%] xl:w-[90%] mx-auto 2xl:w-full  ">
               <div className="h-full w-full ">
                 <iframe
                   className="rounded-3 lg:rounded-lg h-full w-full"
@@ -182,7 +182,7 @@ function Play() {
             </div>
           </Container>
         </div>
-        <Container className={"mx-auto  "}>
+        <div className={"w-[95%] lg:w-[90%] mx-auto"}>
           <div className="w-full flex items-center justify-between text-[15px] font-medium font-manrope  text-white bg-[#1A1A1A] rounded-lg md:px-4 px-3 lg:px-6 py-6 lg:py-12">
             <div>
               <p>
@@ -200,7 +200,7 @@ function Play() {
                 {video.published_at.slice(0, 10)}
               </p>
               <p className="mt-3">
-                <span className="text-[#999999] text-[16px]">Language: </span>{" "}
+                <span className="text-[#999999] text-[16px]">Language: </span>{" "} 
                 {(video.iso_3166_1 = "US" && "English")}
               </p>
             </div>
@@ -241,59 +241,74 @@ function Play() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center ">
+                <div className="flex items-center overflow-hidden">
                   {carouselMovies.map(
-            ({ poster_path, original_title, id, release_date, vote_average, popularity }, i) => (
-              <div
-                className=" relative   lg:w-[20%] md2:w-[25%] w-[50%] sm2:w-[33.33%]  xl:w-[16.66%] 2xl:w-[14.2857%] transition duration-[.4s] ease-in shrink-0"
-                key={i}
-                style={{ transform: `translateX(-${carouselTranslate}%)` }}
-              >
-                <Link to={`/MoviesShows/video/${id}`}>
-                  <SingleMovieCarou
-                    img={`https://image.tmdb.org/t/p/original` + poster_path}
-                    leftText={
-                      <div className="text-[#999999]  w-full flex items-center justify-between ">
-                        <div className=" gap-1  pt-2   w-full">
-                          {/* <MdWatchLater /> */}
-                          {vote_average > 7 ? (
-                            <div className="flex items-center w-2.5 md:w-[13px]  gap-1 ">
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                            </div>
-                          ) : vote_average < 7 ? (
-                            <div className="flex items-center w-2.5 md:w-[13px]  gap-1">
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/one.png" alt="" />
-                              <img src="/icons/three.png" alt="" />
-                            </div>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                        <div className="flex absolute bottom-[6px] right-[16px] md:bottom-[6px] md:right-[18px] items-center gap-1">
-                          <FaEye className="text-[12px] md:text-sm" />
-                          <p className="text-[12px] md:text-[14px]">
-                            {Math.floor(popularity)}k
-                          </p>
-                        </div>
+                    (
+                      {
+                        poster_path,
+                        original_title,
+                        id,
+                        release_date,
+                        vote_average,
+                        popularity,
+                      },
+                      i
+                    ) => (
+                      <div
+                        className=" relative   lg:w-[20%] md2:w-[25%] w-[50%] sm2:w-[33.33%]  xl:w-[16.66%] 2xl:w-[14.2857%] transition duration-[.4s] ease-in shrink-0"
+                        key={i}
+                        style={{
+                          transform: `translateX(-${carouselTranslate}%)`,
+                        }}
+                      >
+                        <Link to={`/MoviesShows/video/${id}`}>
+                          <SingleMovieCarou
+                            img={
+                              `https://image.tmdb.org/t/p/original` +
+                              poster_path
+                            }
+                            leftText={
+                              <div className="text-[#999999]  w-full flex items-center justify-between ">
+                                <div className=" gap-1  pt-2   w-full">
+                                  {/* <MdWatchLater /> */}
+                                  {vote_average > 7 ? (
+                                    <div className="flex items-center w-2.5 md:w-[13px]  gap-1 ">
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                    </div>
+                                  ) : vote_average < 7 ? (
+                                    <div className="flex items-center w-2.5 md:w-[13px]  gap-1">
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/one.png" alt="" />
+                                      <img src="/icons/three.png" alt="" />
+                                    </div>
+                                  ) : (
+                                    <></>
+                                  )}
+                                </div>
+                                <div className="flex absolute bottom-[6px] right-[16px] md:bottom-[6px] md:right-[18px] items-center gap-1">
+                                  <FaEye className="text-[12px] md:text-sm" />
+                                  <p className="text-[12px] md:text-[14px]">
+                                    {Math.floor(popularity)}k
+                                  </p>
+                                </div>
+                              </div>
+                            }
+                          />
+                        </Link>
                       </div>
-                    }
-                  />
-                </Link>
-              </div>
-            )
-          )}
+                    )
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
     </>
   );

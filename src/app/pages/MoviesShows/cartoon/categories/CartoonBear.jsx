@@ -30,7 +30,7 @@ function CartoonBear() {
   console.log(page)
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=6513&page=${page}`,
+      `https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_genres=16&language=en-US&page=${page}`,
       options
     )
       .then((res) => res.json())

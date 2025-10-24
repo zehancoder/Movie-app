@@ -26,6 +26,13 @@ import CartoonHorse from "../pages/MoviesShows/cartoon/categories/CartoonHorse";
 import CartoonPig from "../pages/MoviesShows/cartoon/categories/CartoonPig";
 import CartoonWolf from "../pages/MoviesShows/cartoon/categories/CartoonWolf";
 import CartoonDog from "../pages/MoviesShows/cartoon/categories/CarttonDog";
+import Horror from "../pages/MoviesShows/movieCategories/Horror";
+import Thriller from "../pages/MoviesShows/movieCategories/Thriller";
+import Sci_fi from "../pages/MoviesShows/movieCategories/Sci_fi";
+import Romance from "../pages/MoviesShows/movieCategories/Romance";
+import Fantasy from "../pages/MoviesShows/movieCategories/Fantasy";
+import Superhero from "../pages/MoviesShows/movieCategories/SuperHero";
+import KidsCartoon from "../pages/MoviesShows/cartoon/categories/KidsCartoon";
 
 function RoutesApp({ children }) {
   return (
@@ -50,6 +57,12 @@ function RoutesApp({ children }) {
         <Route path={"/MoviesShows/Kids"} element={<Kids />} />
         <Route path={"/MoviesShows/Mystry"} element={<Mystrey />} />
         <Route path={"/MoviesShows/News"} element={<News />} />
+        <Route path={"/MoviesShows/Horror"} element={<Horror />} />
+        <Route path={"/MoviesShows/Thriller"} element={<Thriller />} />
+        <Route path={"/MoviesShows/Sci-Fi"} element={<Sci_fi />} />
+        <Route path={"/MoviesShows/Romance"} element={<Romance />} />
+        <Route path={"/MoviesShows/Fantasy"} element={<Fantasy />} />
+        <Route path={"/MoviesShows/Superhero"} element={<Superhero />} />
         {/* video likes routes */}
         <Route path={"/likeVideos"} element={<LikeVideos />} />
         {/* add animations routes */}
@@ -62,6 +75,7 @@ function RoutesApp({ children }) {
         <Route path={"/Animations/cartoon/Cartoon Pig"} element = {<CartoonPig></CartoonPig>}/>
         <Route path={"/Animations/cartoon/Cartoon Wolf"} element = {<CartoonWolf></CartoonWolf>}/>
         <Route path={"/Animations/cartoon/Cartoon Dog"} element = {<CartoonDog></CartoonDog>}/>
+        <Route path={"/Animations/cartoon/Kids Cartoon"} element = {<KidsCartoon></KidsCartoon>}/>
       </Routes>
     </>
   );

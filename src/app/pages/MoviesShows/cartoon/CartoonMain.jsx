@@ -12,7 +12,8 @@ import { FiPlus } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { cartoon } from "../../../../redux/dataFetch";
+import { cartoon, removeLikeAnimations } from "../../../../redux/dataFetch";
+import { likeAnimations } from "../../../../redux/dataFetch";
 import Cartoon from "./Cartoon";
 
 function CartoonMain() {
@@ -139,7 +140,30 @@ function CartoonMain() {
     startAutoPlay();
   };
 
+  // store like video in redux;
 
+  const likeHandle = (likeItems) => {
+    document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+      ? dispatch(removeLikeAnimations({ like: true, data: likeItems }))
+      : dispatch(likeAnimations({ like: true, data: likeItems }));
+
+    document.getElementById(`${likeItems.id}`).style.backgroundColor =
+      document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
+        ? "#0F0F0F"
+        : "red";
+  };
+
+  const likeData = useSelector((state) => state.likeAnimations);
+
+  //track like vidoes from redux store
+  const likeTrack = () =>
+    likeData.map(({ data }) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id}`).style.background = "red";
+      }, 400);
+    });
+
+  likeTrack();
 
   return (
     <>
@@ -253,10 +277,11 @@ function CartoonMain() {
                         {overview}
                       </ParagraphText>
                       <div className="flex items-center justify-center mt-4">
-                        <Button
-                          className={"bg-[#ff0000] customBtnHoverEffect"}
-                        >
-                          <Link to={`video/${id}`} className="flex items-center gap-2">
+                        <Button className={"bg-[#ff0000] customBtnHoverEffect"}>
+                          <Link
+                            to={`video/${id}`}
+                            className="flex items-center gap-2"
+                          >
                             <IoPlay /> Play Now
                           </Link>
                         </Button>
@@ -264,7 +289,11 @@ function CartoonMain() {
                           <span className="px-3 md:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
                             <FiPlus />
                           </span>{" "}
-                          <span className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                          <span
+                            id={id}
+                            onClick={() => likeHandle(carouselMovies[idx])}
+                            className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                          >
                             <AiFillLike />
                           </span>
                           <span className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">

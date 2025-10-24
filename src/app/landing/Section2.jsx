@@ -8,31 +8,30 @@ import { LuMoveLeft } from "react-icons/lu";
 import { LuMoveRight } from "react-icons/lu";
 import jsonData from "../../data/carouselData.json";
 import CommonCarou from "../common/CommonCarou";
+import { Link } from "react-router-dom";
 
 function Section2() {
+  // carousel count number
+  const [carouselNum, setCarouselNum] = useState(0);
+  const [carouselTranslate, setCarouselTranslet] = useState(0);
+  // make dinamic arr for making loop and make carousel tracker;
+  const [arrowArr, setArrowArr] = useState(8);
 
-    // carousel count number
-    const [carouselNum, setCarouselNum] = useState(0);
-    const [carouselTranslate, setCarouselTranslet] = useState(0);
-    // make dinamic arr for making loop and make carousel tracker;
-    const [arrowArr, setArrowArr] = useState(8);
-    
-    useEffect(() => {
-      window.addEventListener('resize' ,() => {
-          if(window.innerWidth < 1280){
-            setArrowArr(8)
-          }
-          if(window.innerWidth < 850){
-            setArrowArr(10)
-          }
-      })
-    }, [window.innerWidth])
-  
-      //end make dinamic arr for making loop and make carousel tracker;
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 1280) {
+        setArrowArr(8);
+      }
+      if (window.innerWidth < 850) {
+        setArrowArr(10);
+      }
+    });
+  }, [window.innerWidth]);
 
+  //end make dinamic arr for making loop and make carousel tracker;
 
-    const carouselUp = () => {
-    if (carouselNum >= arrowArr - 1 ) {
+  const carouselUp = () => {
+    if (carouselNum >= arrowArr - 1) {
       setCarouselNum(0);
       setCarouselTranslet(0);
     } else {
@@ -45,13 +44,14 @@ function Section2() {
     console.log("down");
     if (carouselNum < 1) {
       setCarouselNum(arrowArr - 1);
-      setCarouselTranslet(carouselTranslate + arrowArr === 10 ? 700 : arrowArr === 8 ? 700 : 600);
+      setCarouselTranslet(
+        carouselTranslate + arrowArr === 10 ? 700 : arrowArr === 8 ? 700 : 600
+      );
     } else {
       setCarouselNum(carouselNum - 1);
       setCarouselTranslet(carouselTranslate - 100);
     }
   };
-
 
   return (
     <div className="w-[100vw] bg-[#141414] py-5 px-0 md:px-3 z-30 overflow-x-hidden">
@@ -107,15 +107,17 @@ function Section2() {
                 style={{ transform: `translateX(${-carouselTranslate}%)` }}
                 id="carousel"
               >
-                {
-                  <CommonCarou
-                    img1={img1}
-                    img2={img2}
-                    img3={img3}
-                    img4={img4}
-                    text={text}
-                  />
-                }
+                <Link to={`/MoviesShows/${text}`}>
+                  {
+                    <CommonCarou
+                      img1={img1}
+                      img2={img2}
+                      img3={img3}
+                      img4={img4}
+                      text={text}
+                    />
+                  }
+                </Link>
               </div>
             );
           })}
