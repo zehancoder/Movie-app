@@ -22,8 +22,15 @@ const initialState = {
   cartoon6: [],
   // adding movie categories
   category: [],
+  // addding like videos
   likeVideos: [],
   likeAnimations: [],
+  // adding saved vidoes
+  savedMovies: [],
+  savedAnimations: [],
+
+  // add new saved data for send to playlist box
+  newPlayListItem: "",
 };
 
 export const movieSlice = createSlice({
@@ -89,46 +96,58 @@ export const movieSlice = createSlice({
     category: (state, actions) => {
       state.category.push(actions.payload);
     },
+    // storing movies you liked
+
     likeVideos: (state, actions) => {
       state.likeVideos.push(actions.payload);
-      
-
     },
     removeLike: (state, actions) => {
-      state.likeVideos = state.likeVideos.filter((data) => data.data.id !== actions.payload.data.id)
-      
-      console.log(actions.payload)
+      state.likeVideos = state.likeVideos.filter(
+        (data) => data.data.id !== actions.payload.data.id
+      );
+
+      console.log(actions.payload);
     },
     // storing animation you liked
     likeAnimations: (state, actions) => {
       state.likeAnimations.push(actions.payload);
-      
-
     },
     removeLikeAnimations: (state, actions) => {
-      state.likeAnimations = state.likeAnimations.filter((data) => data.data.id !== actions.payload.data.id)
-      
+      state.likeAnimations = state.likeAnimations.filter(
+        (data) => data.data.id !== actions.payload.data.id
+      );
     },
+
+    // storing movies you saved
+
     savedMovies: (state, actions) => {
       state.savedMovies.push(actions.payload);
-      
 
+      state.savedMovies = state.savedMovies.filter(({ name, data }) => {
+        return name !== actions.payload;
+      });
+
+      // console.log(actions.payload)
     },
     removeSavedMovies: (state, actions) => {
-      state.savedMovies = state.savedMovies.filter((data) => data.data.id !== actions.payload.data.id)
-      
-      console.log(actions.payload)
+      state.savedMovies = state.savedMovies.filter(({name, data}) => data.id !== actions.payload.data.id)
+
+      console.log(actions.payload);
     },
-    // storing animation you liked
+    // storing animation you saved
     savedAnimations: (state, actions) => {
       state.savedAnimations.push(actions.payload);
-      
-
     },
     removeSavedAnimations: (state, actions) => {
-      state.savedAnimations = state.savedAnimations.filter((data) => data.data.id !== actions.payload.data.id)
-      
-      console.log(actions.payload)
+      state.savedAnimations = state.savedAnimations.filter(
+        (data) => data.data.id !== actions.payload.data.id
+      );
+
+      console.log(actions.payload);
+    },
+    // new data for send to playlistbox
+    newSavedData: (state, actions) => {
+      state.newPlayListItem = actions.payload;
     },
   },
 });
@@ -156,7 +175,13 @@ export const {
   likeVideos,
   removeLike,
   likeAnimations,
-  removeLikeAnimations
+  removeLikeAnimations,
+
+  savedAnimations,
+  savedMovies,
+  removeSavedAnimations,
+  removeSavedMovies,
+  newSavedData,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

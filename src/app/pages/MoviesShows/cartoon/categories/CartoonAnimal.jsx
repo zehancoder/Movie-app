@@ -71,6 +71,9 @@ function CartoonAnimal() {
 
   // console.log(likeData);
 
+
+  
+
   return (
     <div className="overflow-hidden w-screen py-8">
       <div className="h-28"></div>

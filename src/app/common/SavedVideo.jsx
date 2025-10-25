@@ -4,30 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import Heading from "./Heading";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { data, Link } from "react-router-dom";
 import { IoPlay } from "react-icons/io5";
 import { AiFillLike, AiFillSound } from "react-icons/ai";
 import { FiPlus } from "react-icons/fi";
 import { FaEye } from "react-icons/fa6";
 import SingleMovieCarou from "./SingleMovieCarou";
 import {
-  newSavedData,
   removeLike,
   removeLikeAnimations,
   removeSavedMovies,
-  savedMovies,
 } from "../../redux/dataFetch";
-function LikeVideos() {
-  const movie = useSelector((state) => state.likeVideos);
+import { likeVideos } from "../../redux/dataFetch";
+function SavedVideos() {
+  const movie = useSelector((state) => state.savedMovies);
   const dispatch = useDispatch();
   // track like videos from redux store
-  const likeTrack = () =>
+  const savedTrack = () =>
     movie.map(({ data }) => {
       setTimeout(() => {
-        document.getElementById(`${data.id}`).style.background = "red";
+        document.getElementById(`${data.id + `s`}`).style.background = "red";
       }, 400);
     });
 
+  // animation saved vidoes
   const animations = useSelector((state) => state.likeAnimations);
   const animationLikeTrack = () =>
     animations.map(({ data }) => {
@@ -36,40 +36,39 @@ function LikeVideos() {
       }, 400);
     });
 
-  likeTrack();
+  savedTrack();
   animationLikeTrack();
 
   // track like movies in saved
-  const selectSaved = useSelector((state) => state.savedMovies);
-
+  const likeVideosData = useSelector((state) => state.likeVideos);
   useEffect(() => {
-    selectSaved.length > 0 &&
-      selectSaved.map(({ data }, idx) => {
+    likeVideosData.length > 0 &&
+      likeVideosData.map(({ data }, idx) => {
         movie.map((data2) => {
           if (data.id === data2.data.id) {
-            document.getElementById(`${data.id + `s`}`).style.background =
-              "red";
+            document.getElementById(`${data.id}`).style.background = "red";
           }
         });
       });
-  }, [selectSaved]);
+  }, [likeVideosData]);
 
-  // remove saved videos from like page
-  const savedItemRemoveHandle = (removeitems) => {
-    if (document.getElementById(removeitems.data.id + "s").style.background === "red") {
-      dispatch(
-        removeSavedMovies({
-          name: removeitems.name,
-          data: removeitems.data,
-        })
-      );
-      document.getElementById(removeitems.data.id + "s").style.background =
-        "#0F0F0F";
-    }else if(document.getElementById(removeitems.data.id + "s").style.background !== "red"){
-      // dispatch(savedMovies({name: removeitems.name, data: removeitems.data}))
-      dispatch(newSavedData( removeitems.data))
-      // document.getElementById(removeitems.data.id + "s").style.background = "red";
-    }
+  // do like when stay in saved page
+  const newHandle = (newItems) => {
+
+      if (document.getElementById(`${newItems.data.id}`).style.background === "red") {
+        dispatch(
+          removeLike({
+            like: true,
+            data: newItems.data,
+          })
+        );
+        document.getElementById(`${newItems.data.id}`).style.background = "#0F0F0F"
+      }else if(document.getElementById(`${newItems.data.id}`).style.background !== "red"){
+        console.log(newItems.data)
+        document.getElementById(`${newItems.data.id}`).style.background = "red";
+        dispatch(likeVideos({like: true, data: newItems.data}))
+      }
+
   };
 
   return (
@@ -78,16 +77,19 @@ function LikeVideos() {
       <Container className={"mx-auto h-full relative xl:p-0"}>
         <div>
           <Heading>
-            {movie.length > 0 ? "You Liked Movies" : "No Liked Movies"}
+            {movie.length > 0 ? "Your Playlist Movies" : "No Playlist Movies"}
           </Heading>
           <div className="py-5">
             {movie.length > 0 && (
               <div>
                 <div>
                   <div className="flex items-center flex-wrap">
-                    {movie.map(({ data }, idx) => (
+                    {movie.map(({ data, name }, idx) => (
                       <div className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation">
                         <div>
+                          <p className="text-[#999] font-medium text-lg pl-3">
+                            Playlist: {name}
+                          </p>
                           <div className="">
                             <SingleMovieCarou
                               img={`https://image.tmdb.org/t/p/original${data.poster_path}`}
@@ -110,7 +112,12 @@ function LikeVideos() {
                                       <span
                                         id={data.id + `s`}
                                         onClick={() =>
-                                          savedItemRemoveHandle(movie[idx])
+                                          dispatch(
+                                            removeSavedMovies({
+                                              name: name,
+                                              data: data,
+                                            })
+                                          )
                                         }
                                         className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
                                       >
@@ -118,14 +125,7 @@ function LikeVideos() {
                                       </span>{" "}
                                       <span
                                         id={data.id}
-                                        onClick={() =>
-                                          dispatch(
-                                            removeLike({
-                                              like: true,
-                                              data: data,
-                                            })
-                                          )
-                                        }
+                                        onClick={() => newHandle(movie[idx])}
                                         className={`px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect `}
                                       >
                                         <AiFillLike />
@@ -197,13 +197,13 @@ function LikeVideos() {
             )}
           </div>
         </div>
-        {/* showing liked animations */}
+        {/* showing saved animations */}
 
         <div>
           <Heading>
             {animations.length > 0
-              ? "You Liked Animations"
-              : "No Liked Animations"}
+              ? "Your Playlist Animations"
+              : "No Playlist Animations"}
           </Heading>
           <div className="py-5">
             {animations.length > 0 && (
@@ -321,4 +321,4 @@ function LikeVideos() {
   );
 }
 
-export default LikeVideos;
+export default SavedVideos;

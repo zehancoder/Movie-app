@@ -12,7 +12,7 @@ import { AiFillLike, AiFillSound } from "react-icons/ai";
 import { FiPlus } from "react-icons/fi";
 import { FaEye } from "react-icons/fa6";
 import SingleMovieCarou from "../../../common/SingleMovieCarou";
-import { removeLike, likeVideos } from "../../../../redux/dataFetch";
+import { removeLike, likeVideos, newSavedData } from "../../../../redux/dataFetch";
 function ActionsAdve() {
   const [movie, setMovies] = useState([]);
 
@@ -75,6 +75,23 @@ function ActionsAdve() {
 
   likeTrack();
 
+  // add movie saved functionality and save them in redux;
+  // const [input, setInput] = useState('hello');
+  const savedHandle = (savedItems) => {
+    dispatch(newSavedData(savedItems));
+  };
+
+  // saved movies track
+  const savedMovies = useSelector((state) => state.savedMovies);
+  const savedTrack = () =>
+    savedMovies.map(({ data }, idx) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id + `s`}`).style.background = "red";
+      }, 400);
+    });
+
+  savedTrack();
+
   return (
     <div className="overflow-hidden w-screen py-8">
       <div className="h-28"></div>
@@ -88,13 +105,16 @@ function ActionsAdve() {
                   <div className="flex items-center flex-wrap">
                     {movie.map((data) =>
                       data.map(
-                        ({
-                          poster_path,
-                          original_title,
-                          vote_average,
-                          popularity,
-                          id,
-                        } ,idx) => (
+                        (
+                          {
+                            poster_path,
+                            original_title,
+                            vote_average,
+                            popularity,
+                            id,
+                          },
+                          idx
+                        ) => (
                           <div className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation">
                             <div>
                               <div className="">
@@ -116,7 +136,13 @@ function ActionsAdve() {
                                           </Link>
                                         </Button>
                                         <div className="flex items-center gap-2 text-[13px] mt-2">
-                                          <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                          <span
+                                            id={id + `s`}
+                                            onClick={() =>
+                                              savedHandle(data[idx])
+                                            }
+                                            className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                                          >
                                             <FiPlus />
                                           </span>{" "}
                                           <span

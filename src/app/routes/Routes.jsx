@@ -33,6 +33,7 @@ import Romance from "../pages/MoviesShows/movieCategories/Romance";
 import Fantasy from "../pages/MoviesShows/movieCategories/Fantasy";
 import Superhero from "../pages/MoviesShows/movieCategories/SuperHero";
 import KidsCartoon from "../pages/MoviesShows/cartoon/categories/KidsCartoon";
+import SavedVideos from "../common/SavedVideo";
 
 function RoutesApp({ children }) {
   return (
@@ -65,6 +66,7 @@ function RoutesApp({ children }) {
         <Route path={"/MoviesShows/Superhero"} element={<Superhero />} />
         {/* video likes routes */}
         <Route path={"/likeVideos"} element={<LikeVideos />} />
+        <Route path={"/savedVideos"} element={<SavedVideos />} />
         {/* add animations routes */}
         <Route path={"/Animations/cartoon/Cartoon Animal"} element = {<CartoonAnimal></CartoonAnimal>}/>
         <Route path={"/Animations/cartoon/Cartoon Bear"} element = {<CartoonBear></CartoonBear>}/>

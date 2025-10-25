@@ -5,6 +5,7 @@ import Animation from "./GSAPanimation/Animation";
 import { useState } from "react";
 import { useEffect } from "react";
 import Footer from "./app/common/Footer";
+import PlaylistBox from "./app/common/PlaylistBox";
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -38,6 +39,7 @@ function App() {
         </div>
       ) : (
         <div className="overflow-x-hidden ">
+          <PlaylistBox/>
           <Animation /> 
           <Navber />
           <RoutesApp />

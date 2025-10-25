@@ -5,7 +5,12 @@ import { useState, useEffect, useRef } from "react";
 import FetchWithCategory from "../../../../data/FetchCategoryMovie";
 import Heading from "../../../common/Heading";
 import Button from "../../../common/Button";
-import { category, likeVideos, removeLike } from "../../../../redux/dataFetch";
+import {
+  category,
+  likeVideos,
+  removeLike,
+  newSavedData,
+} from "../../../../redux/dataFetch";
 import { Link } from "react-router-dom";
 import { IoPlay } from "react-icons/io5";
 import { AiFillLike, AiFillSound } from "react-icons/ai";
@@ -42,7 +47,6 @@ function Horror() {
     movie.length > 0 && dispatch(category(movie));
   }, [movie]);
 
-
   const mainData = useSelector((state) => state.category);
 
   // const [page, setPage] = useState(2);
@@ -50,7 +54,7 @@ function Horror() {
     setPage((prev) => prev + 1);
   };
 
-    // store like video in redux;
+  // store like video in redux;
 
   const likeHandle = (likeItems) => {
     document.getElementById(`${likeItems.id}`).style.backgroundColor === "red"
@@ -75,6 +79,23 @@ function Horror() {
 
   likeTrack();
 
+  // add movie saved functionality and save them in redux;
+  // const [input, setInput] = useState('hello');
+  const savedHandle = (savedItems) => {
+    dispatch(newSavedData(savedItems));
+  };
+
+  // saved movies track
+  const savedMovies = useSelector((state) => state.savedMovies);
+  const savedTrack = () =>
+    savedMovies.map(({ data }, idx) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id + `s`}`).style.background = "red";
+      }, 400);
+    });
+
+  savedTrack();
+
   return (
     <div className="overflow-hidden w-screen py-8">
       <div className="h-28"></div>
@@ -86,18 +107,19 @@ function Horror() {
               <div>
                 <div>
                   <div className="flex items-center flex-wrap">
-                   {movie.map((data) =>
+                    {movie.map((data) =>
                       data.map(
-                        ({
-                          poster_path,
-                          original_title,
-                          vote_average,
-                          popularity,
-                          id,
-                        }, idx) => (
-                          <div
-                            className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation"
-                          >
+                        (
+                          {
+                            poster_path,
+                            original_title,
+                            vote_average,
+                            popularity,
+                            id,
+                          },
+                          idx
+                        ) => (
+                          <div className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation">
                             <div>
                               <div className="">
                                 <SingleMovieCarou
@@ -118,10 +140,16 @@ function Horror() {
                                           </Link>
                                         </Button>
                                         <div className="flex items-center gap-2 text-[13px] mt-2">
-                                          <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                          <span
+                                            id={id + `s`}
+                                            onClick={() =>
+                                              savedHandle(data[idx])
+                                            }
+                                            className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                                          >
                                             <FiPlus />
                                           </span>{" "}
-                                         <span
+                                          <span
                                             id={id}
                                             onClick={() =>
                                               likeHandle(data[idx])
