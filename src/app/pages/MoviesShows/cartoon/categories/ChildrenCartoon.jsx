@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import Heading from "../../../../common/Heading";
 import Button from "../../../../common/Button";
-import { likeAnimations, removeLikeAnimations } from "../../../../../redux/dataFetch";
+import {
+  likeAnimations,
+  removeLikeAnimations,
+  newPlayListAnimeItem,
+} from "../../../../../redux/dataFetch";
 import { Link } from "react-router-dom";
 import { IoPlay } from "react-icons/io5";
 import { AiFillLike, AiFillSound } from "react-icons/ai";
@@ -12,7 +16,7 @@ import { FiPlus } from "react-icons/fi";
 import { FaEye } from "react-icons/fa6";
 import SingleMovieCarou from "../../../../common/SingleMovieCarou";
 function ChildrenCartoon() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [movie, setMovies] = useState([]);
 
   // getting data from tmdb api
@@ -27,7 +31,7 @@ function ChildrenCartoon() {
     },
   };
 
-  console.log(page)
+  console.log(page);
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=15284&page=${page}`,
@@ -37,7 +41,6 @@ function ChildrenCartoon() {
       .then((res) => setMovies((prev) => [...prev, res.results]))
       .catch((err) => console.error(err));
   }, [page]);
-
 
   // const [page, setPage] = useState(2);
   const newDataImport = () => {
@@ -70,6 +73,23 @@ function ChildrenCartoon() {
   likeTrack();
 
   // console.log(likeData);
+
+  // add animations saved functionality and save them in redux;
+  // const [input, setInput] = useState('hello');
+  const savedHandle = (savedItems) => {
+    dispatch(newPlayListAnimeItem(savedItems));
+  };
+
+  // saved movies track
+  const savedAnimationsData = useSelector((state) => state.savedAnimations);
+  const savedTrack = () =>
+    savedAnimationsData.map(({ data }, idx) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id + `a`}`).style.background = "red";
+      }, 400);
+    });
+
+  savedTrack();
 
   return (
     <div className="overflow-hidden w-screen py-8">
@@ -115,7 +135,13 @@ function ChildrenCartoon() {
                                           </Link>
                                         </Button>
                                         <div className="flex items-center gap-2 text-[13px] mt-2">
-                                          <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                          <span
+                                            id={id + `a`}
+                                            onClick={() =>
+                                              savedHandle(data[idx])
+                                            }
+                                            className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                                          >
                                             <FiPlus />
                                           </span>{" "}
                                           <span

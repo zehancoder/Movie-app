@@ -14,8 +14,10 @@ import {
   newSavedData,
   removeLike,
   removeLikeAnimations,
+  removeSavedAnimations,
   removeSavedMovies,
   savedMovies,
+  newPlayListAnimeItem
 } from "../../redux/dataFetch";
 function LikeVideos() {
   const movie = useSelector((state) => state.likeVideos);
@@ -68,6 +70,45 @@ function LikeVideos() {
     }else if(document.getElementById(removeitems.data.id + "s").style.background !== "red"){
       // dispatch(savedMovies({name: removeitems.name, data: removeitems.data}))
       dispatch(newSavedData( removeitems.data))
+      // document.getElementById(removeitems.data.id + "s").style.background = "red";
+    }
+  };
+
+
+
+
+
+  //track saved animaiton videos in like vioes page and remove saved vidoes from like page
+
+
+  const savedAnimationFromStore = useSelector((state) => state.savedAnimations);
+
+  useEffect(() => {
+    savedAnimationFromStore.length > 0 &&
+      savedAnimationFromStore.map(({ data }, idx) => {
+        animations.map((data2) => {
+          if (data.id === data2.data.id) {
+            document.getElementById(`${data.id + `a`}`).style.background =
+              "red";
+          }
+        });
+      });
+  }, [savedAnimationFromStore]);
+
+  // remove saved videos from like page
+  const savedAnimeRemoveHandle = (removeitems) => {
+    if (document.getElementById(removeitems.data.id + "a").style.background === "red") {
+      dispatch(
+        removeSavedAnimations({
+          name: removeitems.name,
+          data: removeitems.data,
+        })
+      );
+      document.getElementById(removeitems.data.id + "a").style.background =
+        "#0F0F0F";
+    }else if(document.getElementById(removeitems.data.id + "a").style.background !== "red"){
+      // dispatch(savedMovies({name: removeitems.name, data: removeitems.data}))
+      dispatch(newPlayListAnimeItem( removeitems.data))
       // document.getElementById(removeitems.data.id + "s").style.background = "red";
     }
   };
@@ -210,7 +251,7 @@ function LikeVideos() {
               <div>
                 <div>
                   <div className="flex items-center flex-wrap">
-                    {animations.map(({ data }) => (
+                    {animations.map(({ data }, idx) => (
                       <div className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation">
                         <div>
                           <div className="">
@@ -232,7 +273,13 @@ function LikeVideos() {
                                       </Link>
                                     </Button>
                                     <div className="flex items-center gap-2 text-[13px] mt-2">
-                                      <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                      <span
+                                        id={data.id + `a`}
+                                        onClick={() =>
+                                          savedAnimeRemoveHandle(animations[idx])
+                                        }
+                                        className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                                      >
                                         <FiPlus />
                                       </span>{" "}
                                       <span

@@ -14,7 +14,7 @@ function Animation() {
       "#logo",
       {
         y: -40,
-        duration: 1,
+        duration: 0.5,
         delay: 0.1,
         opacity: 0,
       },
@@ -23,25 +23,28 @@ function Animation() {
         opacity: 1,
       }
     );
-    tl.fromTo(
-      ".animate",
-      {
-        y: -40,
-        duration: 1,
-        delay: 0.1,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.4,
-      }
-    );
+
+    if (window.innerWidth > 1025) {
+      tl.fromTo(
+        ".animate",
+        {
+          y: -40,
+          duration: 0.5,
+          delay: 0.1,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.4,
+        }
+      );
+    }
     tl.fromTo(
       ".search",
       {
         y: -40,
-        duration: 1,
+        duration: 0.5,
         delay: 0.1,
         opacity: 0,
       },
@@ -54,7 +57,21 @@ function Animation() {
       ".notifications",
       {
         y: -40,
-        duration: 1,
+        duration: 0.5,
+        delay: 0.1,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+      }
+    );
+
+    tl.fromTo(
+      "#menuBar",
+      {
+        y: -40,
+        duration: 0.5,
         delay: 0.1,
         opacity: 0,
       },
@@ -135,7 +152,7 @@ function Animation() {
           trigger: ".askQuestion",
           start: "top 100%", // যখন এলিমেন্ট পেজে দেখা যাবে তখন শুরু হবে
           end: "bottom 65%",
-          scrub: 2
+          scrub: 2,
         },
       }
     );
@@ -152,25 +169,28 @@ function Animation() {
           trigger: ".plansAnimation",
           start: "top 100%", // যখন এলিমেন্ট পেজে দেখা যাবে তখন শুরু হবে
           end: "bottom 85%",
-          scrub: 2
+          scrub: 2,
         },
       }
     );
-    gsap.fromTo(".scrollAnimation", {
-      opacity: 0,
-      y: 150,
-      
-    }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      stagger: 0.,
-      scrollTrigger: {
-        trigger: ".scrollAnimation",
-        start: "top 50%",
-        end: "top 80%",
+    gsap.fromTo(
+      ".scrollAnimation",
+      {
+        opacity: 0,
+        y: 150,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0,
+        scrollTrigger: {
+          trigger: ".scrollAnimation",
+          start: "top 50%",
+          end: "top 80%",
+        },
       }
-    })
+    );
   };
 
   useGSAP(() => {

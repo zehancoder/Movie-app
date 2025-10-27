@@ -14,6 +14,9 @@ import {
   removeLike,
   removeLikeAnimations,
   removeSavedMovies,
+  savedAnimations,
+  removeSavedAnimations,
+  likeAnimations,
 } from "../../redux/dataFetch";
 import { likeVideos } from "../../redux/dataFetch";
 function SavedVideos() {
@@ -27,17 +30,16 @@ function SavedVideos() {
       }, 400);
     });
 
-  // animation saved vidoes
-  const animations = useSelector((state) => state.likeAnimations);
-  const animationLikeTrack = () =>
-    animations.map(({ data }) => {
-      setTimeout(() => {
-        document.getElementById(`${data.id}`).style.background = "red";
-      }, 400);
-    });
+  // // animation like vidoes
+  // const animations = useSelector((state) => state.likeAnimations);
+  // const animationLikeTrack = () =>
+  //   animations.map(({ data }) => {
+  //     setTimeout(() => {
+  //       document.getElementById(`${data.id}`).style.background = "red";
+  //     }, 400);
+  //   });
 
   savedTrack();
-  animationLikeTrack();
 
   // track like movies in saved
   const likeVideosData = useSelector((state) => state.likeVideos);
@@ -54,22 +56,89 @@ function SavedVideos() {
 
   // do like when stay in saved page
   const newHandle = (newItems) => {
-
-      if (document.getElementById(`${newItems.data.id}`).style.background === "red") {
-        dispatch(
-          removeLike({
-            like: true,
-            data: newItems.data,
-          })
-        );
-        document.getElementById(`${newItems.data.id}`).style.background = "#0F0F0F"
-      }else if(document.getElementById(`${newItems.data.id}`).style.background !== "red"){
-        console.log(newItems.data)
-        document.getElementById(`${newItems.data.id}`).style.background = "red";
-        dispatch(likeVideos({like: true, data: newItems.data}))
-      }
-
+    if (
+      document.getElementById(`${newItems.data.id}`).style.background === "red"
+    ) {
+      dispatch(
+        removeLike({
+          like: true,
+          data: newItems.data,
+        })
+      );
+      document.getElementById(`${newItems.data.id}`).style.background =
+        "#0F0F0F";
+    } else if (
+      document.getElementById(`${newItems.data.id}`).style.background !== "red"
+    ) {
+      console.log(newItems.data);
+      document.getElementById(`${newItems.data.id}`).style.background = "red";
+      dispatch(likeVideos({ like: true, data: newItems.data }));
+    }
   };
+
+  // working on animations saved vidoes
+  // const animationSavedVideo = useSelector(state => state.savedAnimations);
+
+  //track animation like vidoes in saved videos
+  const savedanimationsStore = useSelector((state) => state.savedAnimations);
+
+  const animationSavedTrack = () =>
+    savedanimationsStore.map(({ data }) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id + `a`}`).style.background = "red";
+      }, 400);
+    });
+
+  // // animation like vidoes
+  // const animations = useSelector((state) => state.likeAnimations);
+  // const animationLikeTrack = () =>
+  //   animations.map(({ data }) => {
+  //     setTimeout(() => {
+  //       document.getElementById(`${data.id}`).style.background = "red";
+  //     }, 400);
+  //   });
+
+  animationSavedTrack();
+
+  // track like movies in saved
+  const likeAnimationData = useSelector((state) => state.likeAnimations);
+  useEffect(() => {
+    likeAnimationData.length > 0 &&
+      likeAnimationData.map(({ data }, idx) => {
+        savedanimationsStore.map((data2) => {
+          if (data.id === data2.data.id) {
+            document.getElementById(`${data.id}`).style.background = "red";
+          }
+        });
+      });
+  }, [likeAnimationData]);
+
+  // do like when stay in saved page
+  const savedAnimationHandle = (newItems) => {
+    if (
+      document.getElementById(`${newItems.data.id}`).style.background ===
+      "red"
+    ) {
+      dispatch(
+        removeLikeAnimations({
+          like: true,
+          data: newItems.data,
+        })
+      );
+      document.getElementById(`${newItems.data.id}`).style.background =
+        "#0F0F0F";
+    } else if (
+      document.getElementById(`${newItems.data.id}`).style.background !==
+      "red"
+    ) {
+      document.getElementById(`${newItems.data.id}`).style.background =
+        "red";
+      dispatch(likeAnimations({ like: true, data: newItems.data }));
+    }
+  };
+
+
+  const savedAnimationsData = useSelector(state => state.savedAnimations)
 
   return (
     <div className="overflow-hidden w-screen py-8">
@@ -201,18 +270,21 @@ function SavedVideos() {
 
         <div>
           <Heading>
-            {animations.length > 0
-              ? "Your Playlist Animations"
-              : "No Playlist Animations"}
+            {savedAnimationsData.length > 0
+              ? "Your Saved Animations"
+              : "No Saved Animations"}
           </Heading>
           <div className="py-5">
-            {animations.length > 0 && (
+            {savedAnimationsData.length > 0 && (
               <div>
                 <div>
                   <div className="flex items-center flex-wrap">
-                    {animations.map(({ data }) => (
+                    {savedAnimationsData.map(({ data, name }, idx) => (
                       <div className="lg:w-[16.66%] md2:w-[20%] showPlaylikeOnhoverParent  sm:w-[25%] sm2:w-[33.33%] w-[50%] xl:w-[14.28%]  scrollAnimation">
                         <div>
+                          <p className="text-[#999] font-medium text-lg pl-3">
+                            Playlist: {name}
+                          </p>
                           <div className="">
                             <SingleMovieCarou
                               img={`https://image.tmdb.org/t/p/original${data.poster_path}`}
@@ -232,18 +304,24 @@ function SavedVideos() {
                                       </Link>
                                     </Button>
                                     <div className="flex items-center gap-2 text-[13px] mt-2">
-                                      <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                      <span
+                                        id={data.id + `a`}
+                                        onClick={() =>
+                                          dispatch(
+                                             removeSavedAnimations({
+                                              name: name,
+                                              data: data,
+                                            })
+                                          )
+                                        }
+                                        className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                                      >
                                         <FiPlus />
                                       </span>{" "}
                                       <span
                                         id={data.id}
                                         onClick={() =>
-                                          dispatch(
-                                            removeLikeAnimations({
-                                              like: true,
-                                              data: data,
-                                            })
-                                          )
+                                          savedAnimationHandle(savedAnimationsData[idx])
                                         }
                                         className={`px-2 lg:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect `}
                                       >

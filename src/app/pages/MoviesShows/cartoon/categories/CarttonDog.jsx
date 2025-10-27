@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import Heading from "../../../../common/Heading";
 import Button from "../../../../common/Button";
-import { likeAnimations, removeLikeAnimations } from "../../../../../redux/dataFetch";
+import { likeAnimations, newPlayListAnimeItem, removeLikeAnimations } from "../../../../../redux/dataFetch";
 import { Link } from "react-router-dom";
 import { IoPlay } from "react-icons/io5";
 import { AiFillLike, AiFillSound } from "react-icons/ai";
@@ -71,6 +71,24 @@ function CartoonDog() {
 
   // console.log(likeData);
 
+
+    // add animations saved functionality and save them in redux;
+  // const [input, setInput] = useState('hello');
+  const savedHandle = (savedItems) => {
+    dispatch(newPlayListAnimeItem(savedItems));
+  };
+
+  // saved movies track
+  const savedAnimationsData = useSelector((state) => state.savedAnimations);
+  const savedTrack = () =>
+    savedAnimationsData.map(({ data }, idx) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id + `a`}`).style.background = "red";
+      }, 400);
+    });
+
+  savedTrack();
+
   return (
     <div className="overflow-hidden w-screen py-8">
       <div className="h-28"></div>
@@ -115,7 +133,13 @@ function CartoonDog() {
                                           </Link>
                                         </Button>
                                         <div className="flex items-center gap-2 text-[13px] mt-2">
-                                          <span className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                                          <span
+                                            id={id + `a`}
+                                            onClick={() =>
+                                              savedHandle(data[idx])
+                                            }
+                                            className="px-2 md:px-2.5 border border-[#1F1F1F] py-[7.5px] lg:py-2.5 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                                          >
                                             <FiPlus />
                                           </span>{" "}
                                           <span

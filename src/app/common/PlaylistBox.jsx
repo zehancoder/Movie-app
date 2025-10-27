@@ -2,11 +2,16 @@ import React, { useEffect } from "react";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { removeSavedMovies, savedMovies } from "../../redux/dataFetch";
+import {
+  removeSavedAnimations,
+  removeSavedMovies,
+  savedAnimations,
+  savedMovies,
+  newPlayListAnimeItem,
+} from "../../redux/dataFetch";
 import { FiPlus } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
-
 
 import ParagraphText from "./ParagraphText";
 function PlaylistBox() {
@@ -25,18 +30,53 @@ function PlaylistBox() {
     }
   }, [newSavedData]);
 
+  // const addNewSaved = () => {
+  //   if (newSavedData !== "") {
+  //     if (input !== "") {
+  //       dispatch(savedMovies({ name: input, data: newSavedData }));
+  //       setInput('')
+  //     }
+  //   }
+  // };
+
+  // store in saved animation when you click on animatin plus icon
+  const newAnimeSavedData = useSelector((state) => state.newPlayListAnimeItem);
+
+  // const [savedPlaylist, setSavePlaylist] = useState("Saved Playlist");
+  // const [onplayListBox, setOnplayListBox] = useState(false);
+  useEffect(() => {
+    if (newAnimeSavedData === "") {
+      setSavePlaylist("New Playlist");
+    }
+    if (newAnimeSavedData !== "") {
+      setOnplayListBox(true);
+    }
+  }, [newAnimeSavedData]);
+
   const addNewSaved = () => {
+    if (newAnimeSavedData !== "") {
+      if (input !== "") {
+        dispatch(savedAnimations({ name: input, data: newAnimeSavedData }));
+        setInput("");
+        dispatch(newPlayListAnimeItem(""));
+        dispatch(newSavedData(""));
+      }
+    }
+
     if (newSavedData !== "") {
       if (input !== "") {
         dispatch(savedMovies({ name: input, data: newSavedData }));
-        setInput('')
+        setInput("");
+        dispatch(newSavedData(""));
+        dispatch(newPlayListAnimeItem(""));
       }
     }
   };
 
+  const savedAnimationsFromStore = useSelector(
+    (state) => state.savedAnimations
+  );
   const savedDataFromstore = useSelector((state) => state.savedMovies);
-
-  
 
   return (
     <>
@@ -115,7 +155,41 @@ function PlaylistBox() {
                         <p className="text-[14px]  font-medium">{name}</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <MdDelete className=" cursor-pointer" onClick={() => dispatch(removeSavedMovies(savedDataFromstore[idx]))}/>
+                        <MdDelete
+                          className=" cursor-pointer"
+                          onClick={() =>
+                            dispatch(removeSavedMovies(savedDataFromstore[idx]))
+                          }
+                        />
+                        <FiPlus className=" cursor-pointer" />
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            {/* map on saved animations in play list box */}
+            <div>
+              <p>
+                {savedAnimationsFromStore.length > 0 && "Your Saved Animations"}
+              </p>
+              {savedAnimationsFromStore.length > 0 &&
+                savedAnimationsFromStore.map(({ name, data }, idx) => {
+                  return (
+                    <div className="px-3 text-[#999] mt-1 flex items-center justify-between py-2 bg-[#0F0F0F] rounded-md border border-[#1F1F1F]">
+                      <div>
+                        <p className="text-[14px]  font-medium">{name}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <MdDelete
+                          className=" cursor-pointer"
+                          onClick={() =>
+                            dispatch(
+                              removeSavedAnimations(
+                                savedAnimationsFromStore[idx]
+                              )
+                            )
+                          }
+                        />
                         <FiPlus className=" cursor-pointer" />
                       </div>
                     </div>

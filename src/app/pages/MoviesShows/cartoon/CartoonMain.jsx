@@ -12,7 +12,11 @@ import { FiPlus } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { cartoon, removeLikeAnimations } from "../../../../redux/dataFetch";
+import {
+  cartoon,
+  newPlayListAnimeItem,
+  removeLikeAnimations,
+} from "../../../../redux/dataFetch";
 import { likeAnimations } from "../../../../redux/dataFetch";
 import Cartoon from "./Cartoon";
 
@@ -165,6 +169,23 @@ function CartoonMain() {
 
   likeTrack();
 
+  // add animations saved functionality and save them in redux;
+  // const [input, setInput] = useState('hello');
+  const savedHandle = (savedItems) => {
+    dispatch(newPlayListAnimeItem(savedItems));
+  };
+
+  // saved movies track
+  const savedAnimationsData = useSelector((state) => state.savedAnimations);
+  const savedTrack = () =>
+    savedAnimationsData.map(({ data }, idx) => {
+      setTimeout(() => {
+        document.getElementById(`${data.id + `a`}`).style.background = "red";
+      }, 400);
+    });
+
+  savedTrack();
+
   return (
     <>
       <div className=" text-white overflow-hidden w-screen py-8 md:h-[700px] h-[600px] lg:h-[1000px] ">
@@ -286,7 +307,11 @@ function CartoonMain() {
                           </Link>
                         </Button>
                         <div className="flex items-center gap-2 text-[18px] ml-2">
-                          <span className="px-3 md:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect">
+                          <span
+                            id={id + `a`}
+                            onClick={() => savedHandle(carouselMovies[idx])}
+                            className="px-3 lg:px-4 border border-[#1F1F1F] py-2 lg:py-4 bg-[#0F0F0F] rounded-lg cursor-pointer carouselArrowEffect"
+                          >
                             <FiPlus />
                           </span>{" "}
                           <span

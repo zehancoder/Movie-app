@@ -147,6 +147,7 @@ function Navber() {
 
                   {/* menu bar added */}
                   <div
+                    id="menuBar"
                     className="cursor-pointer lg:hidden block "
                     onClick={() => dispatch(openNav())}
                   >

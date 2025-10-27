@@ -31,6 +31,7 @@ const initialState = {
 
   // add new saved data for send to playlist box
   newPlayListItem: "",
+  newPlayListAnimeItem: "",
 };
 
 export const movieSlice = createSlice({
@@ -149,6 +150,9 @@ export const movieSlice = createSlice({
     newSavedData: (state, actions) => {
       state.newPlayListItem = actions.payload;
     },
+    newPlayListAnimeItem: (state, actions) => {
+      state.newPlayListAnimeItem = actions.payload;
+    },
   },
 });
 
@@ -182,6 +186,8 @@ export const {
   removeSavedAnimations,
   removeSavedMovies,
   newSavedData,
+  // track animation in playlistBox when you want to save
+  newPlayListAnimeItem
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
