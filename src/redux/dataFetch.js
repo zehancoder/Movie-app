@@ -32,6 +32,8 @@ const initialState = {
   // add new saved data for send to playlist box
   newPlayListItem: "",
   newPlayListAnimeItem: "",
+  /// track login and signup users
+  users: []
 };
 
 export const movieSlice = createSlice({
@@ -143,8 +145,6 @@ export const movieSlice = createSlice({
       state.savedAnimations = state.savedAnimations.filter(
         (data) => data.data.id !== actions.payload.data.id
       );
-
-      console.log(actions.payload);
     },
     // new data for send to playlistbox
     newSavedData: (state, actions) => {
@@ -153,6 +153,8 @@ export const movieSlice = createSlice({
     newPlayListAnimeItem: (state, actions) => {
       state.newPlayListAnimeItem = actions.payload;
     },
+
+    /// signup users
   },
 });
 

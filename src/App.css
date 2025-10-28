@@ -199,3 +199,20 @@ li {
 .showPlaylikeOnhoverParent:hover .showPlaylikeOnhover{
   transform: translateY(0);
 }
+
+
+/* fire base page css */
+.customShadow {
+  box-shadow: -10px -10px 50px #5bf4ff48, 10px 10px 70px #50b3ff5b;
+}
+.inputCustomShadow {
+  box-shadow: -4px -4px 10px #5bf4ff6c, 3px 3px 10px #50b3ff81;
+}
+
+.customBgForm {
+  background: linear-gradient(
+    to bottom,
+    #5ae3ff,
+    #4faefb
+  ); /* Red on left, blue on right */
+}

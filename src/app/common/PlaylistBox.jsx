@@ -147,6 +147,9 @@ function PlaylistBox() {
             </p>
 
             <div>
+              <p className="mb-2 text-[15px] font-medium text-[#999]">
+                {savedDataFromstore.length > 0 && "Your Saved Movies"}
+              </p>
               {savedDataFromstore.length > 0 &&
                 savedDataFromstore.map(({ name, data }, idx) => {
                   return (
@@ -169,7 +172,7 @@ function PlaylistBox() {
             </div>
             {/* map on saved animations in play list box */}
             <div>
-              <p>
+              <p className="mt-2 text-[15px] font-medium text-[#999]">
                 {savedAnimationsFromStore.length > 0 && "Your Saved Animations"}
               </p>
               {savedAnimationsFromStore.length > 0 &&
