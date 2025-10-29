@@ -33,7 +33,10 @@ const initialState = {
   newPlayListItem: "",
   newPlayListAnimeItem: "",
   /// track login and signup users
-  users: []
+  users: {
+    user: null,
+    loading: true
+  }
 };
 
 export const movieSlice = createSlice({
@@ -155,6 +158,15 @@ export const movieSlice = createSlice({
     },
 
     /// signup users
+    userImport: (state, actions)=> {
+      state.users.user = actions.payload
+      console.log(actions.payload)
+      state.users.loading = false
+    },
+    cleanUser:(state, actions) => {
+      state.users.user = null,
+      state.users.loading = false
+    }
   },
 });
 
@@ -189,7 +201,9 @@ export const {
   removeSavedMovies,
   newSavedData,
   // track animation in playlistBox when you want to save
-  newPlayListAnimeItem
+  newPlayListAnimeItem,
+  userImport,
+  cleanUser
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
