@@ -34,8 +34,11 @@ import Fantasy from "../pages/MoviesShows/movieCategories/Fantasy";
 import Superhero from "../pages/MoviesShows/movieCategories/SuperHero";
 import KidsCartoon from "../pages/MoviesShows/cartoon/categories/KidsCartoon";
 import SavedVideos from "../common/SavedVideo";
+import Account from "../pages/userAccount/Account";
+import { useSelector } from "react-redux";
 
 function RoutesApp({ children }) {
+  const {user} = useSelector(state => state.users)
   return (
     <>
       <Routes>
@@ -45,6 +48,8 @@ function RoutesApp({ children }) {
         <Route path="/Support" element={<Support />} />
         <Route path="/Subscriptions" element={<Subscription />} />
         <Route path="/Animations" element={<CartoonMain />} />
+        {/* open users account */}
+        <Route path={"/account/"+user.displayName} element = {<Account/>}/>
         {/* movie & animations play route */}
         <Route path={"/MoviesShows/video/:id"} element={<Play />} />
         <Route path={"/Animations/video/:id"} element={<AnimationPlay />} />

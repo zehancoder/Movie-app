@@ -74,7 +74,6 @@ const Login = async (email, password,setSignUpMsg) => {
 
 const Logout = async () => {
   signOut(auth);
-
 };
 
 export { auth, db, signUp, Login, Logout, signUpLoginWithGoogle };

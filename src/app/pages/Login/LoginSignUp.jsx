@@ -119,8 +119,8 @@ function SignUpandLogin() {
         </div>
       }
 
-      <div className="absolute lg:top-[43%] top-[40%] xl:top-[45%] left-[50%] transform -translate-x-[50%] -translate-y-[35%] ">
-    {user && <div
+      <div className="absolute lg:top-[43%] top-[34%] sm2:top-[40%] xl:top-[45%] left-[50%] transform -translate-x-[50%] -translate-y-[35%] ">
+    {/* {user && <div
       // className={`${
       //   signUpMsg == "Successfuly SignUP" ||
       //   signUpMsg == "Successfuly Login" ||
@@ -138,7 +138,7 @@ function SignUpandLogin() {
         </button>
         <p>{user.email}</p>
       </div>
-    </div>}
+    </div>} */}
 
         <div
           className={`${
@@ -147,7 +147,7 @@ function SignUpandLogin() {
               : "block"
           }`}
         >
-          <h1 className="text-3xl text-center font-bold uppercase text-gray-500 mb-12 tracking-wider">
+          <h1 className="md:text-2xl  text-[22px]  lg:text-3xl text-center font-bold uppercase text-white md:mb-8 sm2:mb-6 mb-4 lg:mb-12 tracking-wider">
             {signState}
           </h1>
 
@@ -156,13 +156,13 @@ function SignUpandLogin() {
               e.preventDefault();
               handleSubmit(e);
             }}
-            className="h-[500px] w-[370px]  md:w-[750px] rounded-3xl overflow-hidden bg-gray-200 customShadow"
+            className=" h-[410px] md:h-[470px] w-[340px] sm2:w-[370px]  md:w-[750px] rounded-3xl overflow-hidden bg-gray-200 customShadow"
           >
             <div className="flex h-full w-full items-center justify-between ">
               <div
-                className={`w-full md:w-[60%] h-full px-12 py-8 flex justify-between flex-col `}
+                className={`w-full md:w-[60%] h-full md:px-8 sm2:px-6 px-4 lg:px-12 md:py-6 py-4 lg:py-8 flex justify-between flex-col `}
               >
-                <h1 className="text-2xl text-center mb-5 font-bold text-gray-500 tracking-wide">
+                <h1 className=" md:text-xl text-[20px] lg:text-2xl text-center md:mb-3 mb-0 lg:mb-5 font-bold text-gray-500 tracking-wide">
                   Hello Friend's!
                 </h1>
                 <div className="text-[#10a6c4f5]">
@@ -219,7 +219,7 @@ function SignUpandLogin() {
                     />
                   </div>
                 </div>
-                <div className=" mt-3">
+                <div className="mt-0 md:mt-3">
                   <label className="flex items-center space-x-2 cursor-pointer mx-auto w-fit font-normal  text-[14px]">
                     <input type="checkbox" className="hidden peer " />
                     <span className="w-[15px] h-[15px] flex items-center justify-center rounded-full border border-[#4faefb] peer-checked:bg-[#4faefb] text-white text-[13px] ">
@@ -232,14 +232,14 @@ function SignUpandLogin() {
                   </label>
                 </div>
 
-                <div className="w-full text-center mt-6">
+                <div className="w-full text-center md:mt-4 mt-0 lg:mt-6">
                   <button className="uppercase font-bold cursor-pointer text-[14px] tracking-wider  text-white customBg px-4 py-2.5 inputCustomShadow rounded-4xl">
                     {signState == "Sign Up" ? "Create Account" : "Sign In"}
                   </button>
                 </div>
 
                 <div>
-                  <p className="text-[14px] font-normal text-gray-500 text-center mt-3">
+                  <p className="text-[14px] font-normal text-gray-500 text-center md:mt-3">
                     {signState == "Sign Up"
                       ? "Already have an account?"
                       : "Create New account"}
@@ -259,7 +259,7 @@ function SignUpandLogin() {
 
                 <div>
                   <div>
-                    <p className="text-[14px] font-normal text-gray-500 text-center mt-3">
+                    <p className="text-[14px] font-normal text-gray-500 text-center md:mt-3">
                       Or, {signState} With
                     </p>
                     <div className="flex items-center gap-6 mt-2 justify-center">

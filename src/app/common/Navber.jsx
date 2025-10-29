@@ -9,6 +9,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import NavToggle from "./NavToggle";
 import { AiFillLike, AiFillSound } from "react-icons/ai";
 import { FiPlus } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
 function Navber() {
   // searchInput showing
   const [showSearch, setShowSearch] = useState(false);
@@ -32,6 +33,9 @@ function Navber() {
   const savedHandle = () => {
     setOpenSaved(!openSaved);
   };
+
+  // get user after login from redux store
+  const { user, loading } = useSelector((state) => state.users);
 
   return (
     <div className=" ">
@@ -181,8 +185,16 @@ function Navber() {
             <div className="  text-white font-manrope text-lg items-center ">
               <Link
                 onClick={savedHandle}
-                to={"/savedVideos"}
+                to={"/account/"+user.displayName}
                 className="text-[15px] flex items-center gap-2 footerHoverEffect cursor-pointer"
+              >
+                {user.displayName}
+                <FaUser className="text-lg font-medium" />
+              </Link>
+              <Link
+                onClick={savedHandle}
+                to={"/savedVideos"}
+                className="text-[15px] flex items-center gap-2 footerHoverEffect cursor-pointer mt-4"
               >
                 Saved Videos
                 <FiPlus className="text-lg font-medium" />

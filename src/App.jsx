@@ -27,18 +27,38 @@ function App() {
   }, []);
 
   const { user, loading } = useSelector((state) => state.users);
-  console.log(user);
+
+  const text = "Please Login before diving into the website.";
+  const [autoText, setAutoText] = useState("");
+  let idx = 0;
+
+  useEffect(() => {
+    let interVal;
+
+    interVal = setInterval(() => {
+      if (idx <= text.length) {
+        setAutoText((prev) => prev + text[idx - 1]);
+        idx += 1;
+      }
+      if (idx === text.length) {
+        idx = 0;
+        setAutoText("");
+      }
+    }, 200);
+  }, [user]);
 
   return (
     <>
       {/* // 🔄 Loader Section */}
 
       {user === null ? (
-        <div className="w-screen h-screen customBg py-12 px-12">
-          <h1 className="text-3xl w-fit capitalize font-medium  relative text-white font-manrope">
-            Please Login before diving into the website.
-            <img src="/icons/arrow.gif" className=" absolute -right-72 lg:block hidden h-72" alt="" />
-          </h1>
+        <div className="w-screen h-[800px] lg:h-screen customBg md:py-8 sm2:py-6 py-4 lg:py-12 md:px-8 sm2:px-6 px-4 lg:px-12">
+          <div className="flex items-center gap-2">
+            <h1 className="font-bold md:text-2xl text-xl lg:text-3xl w-fit capitalize  relative text-white font-manrope">
+              {autoText}
+            </h1>
+            <div className="h-4 md:h-5 lg:h-7 w-1.5 md:w-2 bg-[#f60000]"></div>
+          </div>
           <SignUpandLogin />
         </div>
       ) : (

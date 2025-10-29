@@ -13,7 +13,7 @@
 @theme {
   --breakpoint-sm2: 580px;
 }
-@theme{
+@theme {
   --breakpoint-md2: 850px;
 }
 
@@ -22,9 +22,9 @@
   position: absolute;
 }
 
-html, body{
-    scrollbar-width: none; /* Firefox */
-
+html,
+body {
+  scrollbar-width: none; /* Firefox */
 }
 
 body {
@@ -54,7 +54,6 @@ li {
   display: none;
 }
 
-
 /* various devices custom shadows and color */
 
 .customGradientColor {
@@ -72,36 +71,34 @@ li {
   overflow-x: hidden;
 }
 .customGradientColor:hover {
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.582);
-
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.582);
 }
 
-.customGradientColor::before{
-  content: '';
+.customGradientColor::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 100%;
-  background-color: #e50000c5 ;
+  background-color: #e50000c5;
   z-index: -9;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
-.customGradientColor:hover::before{
+.customGradientColor:hover::before {
   width: 100%;
 }
 
 /* carousel arrow animation */
 
-
-.carouselArrowEffect{
+.carouselArrowEffect {
   position: relative;
   z-index: 9;
   overflow-x: hidden;
 }
-.carouselArrowEffect::before{
-  content: '';
+.carouselArrowEffect::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -112,7 +109,7 @@ li {
   z-index: -9;
 }
 
-.carouselArrowEffect:hover::before{
+.carouselArrowEffect:hover::before {
   height: 100%;
 }
 
@@ -120,16 +117,15 @@ li {
   touch-action: pan-y !important;
 }
 
-
 /* make a custom btn hover effect */
 
-.customBtnHoverEffect{
+.customBtnHoverEffect {
   position: relative;
   z-index: 9;
   overflow-x: hidden;
 }
-.customBtnHoverEffect::before{
-  content: '';
+.customBtnHoverEffect::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -140,66 +136,59 @@ li {
   z-index: -9;
 }
 
-.customBtnHoverEffect:hover::before{
+.customBtnHoverEffect:hover::before {
   height: 100%;
 }
 
 /* custom gradient color for bottom section */
-.bottomGradient{
- background: 
-  linear-gradient(35deg, rgba(7, 7, 7, 0.5), rgba(92, 16, 16, 0.5)),
-  url("/images/heroImg.png");
-
+.bottomGradient {
+  background: linear-gradient(35deg, rgba(7, 7, 7, 0.5), rgba(92, 16, 16, 0.5)),
+    url("/images/heroImg.png");
 }
 
 /* add footer hover effect */
-.footerHoverEffect{
+.footerHoverEffect {
   position: relative;
-  transition: all .4s;
+  transition: all 0.4s;
 }
-.footerHoverEffect::before{
-  content: '';
+.footerHoverEffect::before {
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
   width: 0;
   height: 100%;
   border-bottom: 1px solid #ff0000;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
-.footerHoverEffect:hover::before{
+.footerHoverEffect:hover::before {
   width: 100%;
 }
 
 /* movies & shows section */
 
-
 /* make shadow in first movie view */
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,1), transparent);
-  
-} 
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+}
 .overlay2 {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(24, 23, 23, 0.692), transparent);
-  
-} 
+}
 
 /* single card hover effect when hover it show like cart and play btn */
-.showPlaylikeOnhover{
+.showPlaylikeOnhover {
   transform: translateY(100%);
-  transition: all .3s;
-  
+  transition: all 0.3s;
 }
 
-.showPlaylikeOnhoverParent:hover .showPlaylikeOnhover{
+.showPlaylikeOnhoverParent:hover .showPlaylikeOnhover {
   transform: translateY(0);
 }
-
 
 /* fire base page css */
 .customShadow {
@@ -216,3 +205,5 @@ li {
     #4faefb
   ); /* Red on left, blue on right */
 }
+
+
