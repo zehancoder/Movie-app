@@ -2,7 +2,7 @@ import "./App.css";
 import Navber from "./app/common/Navber";
 import RoutesApp from "./app/routes/Routes";
 import Animation from "./GSAPanimation/Animation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import Footer from "./app/common/Footer";
 import PlaylistBox from "./app/common/PlaylistBox";
@@ -30,22 +30,26 @@ function App() {
 
   const text = "Please Login before diving into the website.";
   const [autoText, setAutoText] = useState("");
-  let idx = 0;
+  const indexRef = useRef(0); 
 
+  let interval;
   useEffect(() => {
-    let interVal;
+    interval = setInterval(() => {
+      setAutoText((prev) => {
+        if (indexRef.current < text.length) {
+          const updatedText = text.slice(0, indexRef.current + 1);
+          indexRef.current += 1;
+          return updatedText;
+        } else {
+          indexRef.current = 0;
+          return "";
+        }
+      });
+    }, 150); 
 
-    interVal = setInterval(() => {
-      if (idx <= text.length) {
-        setAutoText((prev) => prev + text[idx - 1]);
-        idx += 1;
-      }
-      if (idx === text.length) {
-        idx = 0;
-        setAutoText("");
-      }
-    }, 200);
-  }, [user]);
+    return () => clearInterval(interval);
+  }, [text]);
+
 
   return (
     <>

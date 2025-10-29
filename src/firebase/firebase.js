@@ -13,13 +13,13 @@ import {
 } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyCTNm4aYS1wkQ_PPAezNyy4BWRmj0bWsV4",
-  authDomain: "contextform-b3316.firebaseapp.com",
-  projectId: "contextform-b3316",
-  storageBucket: "contextform-b3316.firebasestorage.app",
-  messagingSenderId: "545654775109",
-  appId: "1:545654775109:web:3b92c13f6bfed7931f722c",
-  measurementId: "G-W0MTDL8CZL",
+  apiKey: "AIzaSyAt0QbpYmIjWsCGiOL_GSGjmmFxk2mcOZE",
+  authDomain: "moviehunting-12.firebaseapp.com",
+  databaseURL: "https://moviehunting-12-default-rtdb.firebaseio.com",
+  projectId: "moviehunting-12",
+  storageBucket: "moviehunting-12.firebasestorage.app",
+  messagingSenderId: "17081493391",
+  appId: "1:17081493391:web:7a1604cc307c85a1c40dfa"
 };
 
 // Initialize Firebase
