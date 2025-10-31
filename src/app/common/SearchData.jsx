@@ -166,7 +166,7 @@ function SearchData() {
   const search = useSelector(state => state.searchingText  )
 
   return (
-    <div className="overflow-hidden w-screen py-8 font-manrope">
+    <div className={`overflow-hidden w-screen py-8 font-manrope ${afterSerach.length > 0 ? "h-auto" : "h-[700px]"}`}>
       <div className="h-28"></div>
       <Container className={"mx-auto h-full relative xl:p-0"}>
         <div>

@@ -26,7 +26,7 @@ function Navber() {
 
   const [showSearch, setShowSearch] = useState(false);
   const ShowSearchHandle = () => {
-    setOpenSaved(false)
+    setOpenSaved(false);
     setShowSearch(!showSearch);
   };
 
@@ -81,6 +81,11 @@ function Navber() {
           data12Res,
           data13Res,
           data14Res,
+          data15Res,
+          data16Res,
+          data17Res,
+          data18Res,
+          data19Res,
         ] = await Promise.all([
           fetch(
             "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=2",
@@ -143,26 +148,65 @@ function Navber() {
             "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_genres=27&page=4",
             options
           ),
-          
+          fetch(
+            "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=9715&page=1",
+            options
+          ),
+          fetch(
+            "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=9715&page=2",
+            options
+          ),
+          fetch(
+            "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=9715&page=3",
+            options
+          ),
+          fetch(
+            "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=9715&page=4",
+            options
+          ),
         ]);
 
-        const [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14] =
-          await Promise.all([
-            data1Res.json(),
-            data2Res.json(),
-            data3Res.json(),
-            data4Res.json(),
-            data5Res.json(),
-            data6Res.json(),
-            data7Res.json(),
-            data8Res.json(),
-            data9Res.json(),
-            data10Res.json(),
-            data11Res.json(),
-            data12Res.json(),
-            data13Res.json(),
-            data14Res.json(),
-          ]);
+        const [
+          data1,
+          data2,
+          data3,
+          data4,
+          data5,
+          data6,
+          data7,
+          data8,
+          data9,
+          data10,
+          data11,
+          data12,
+          data13,
+          data14,
+          data15,
+          data16,
+          data17,
+          data18,
+          data19
+        ] = await Promise.all([
+          data1Res.json(),
+          data2Res.json(),
+          data3Res.json(),
+          data4Res.json(),
+          data5Res.json(),
+          data6Res.json(),
+          data7Res.json(),
+          data8Res.json(),
+          data9Res.json(),
+          data10Res.json(),
+          data11Res.json(),
+          data12Res.json(),
+          data13Res.json(),
+          data14Res.json(),
+          data15Res.json(),
+          data16Res.json(),
+          data17Res.json(),
+          data18Res.json(),
+          data19Res.json(),
+        ]);
 
         setData([
           ...data1.results,
@@ -179,6 +223,11 @@ function Navber() {
           ...data12.results,
           ...data13.results,
           ...data14.results,
+          ...data15.results,
+          ...data16.results,
+          ...data17.results,
+          ...data18.results,
+          ...data19.results,
         ]);
       } catch (error) {
         console.error("Error fetching:", error);
@@ -190,8 +239,154 @@ function Navber() {
     getAllData();
   }, []);
 
+  // get animations for showing in search and store in redux store
+
+    useEffect(() => {
+      const getAllData = async () => {
+        try {
+          const [
+            data1Res,
+            data2Res,
+            data3Res,
+            data4Res,
+            data5Res,
+            data6Res,
+            data7Res,
+            data8Res,
+            data9Res,
+            data10Res,
+            data11Res,
+            data12Res,
+            data13Res,
+            data14Res,
+          ] = await Promise.all([
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=210024",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=6513",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=15284",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=178898",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=271856&page=1",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_genres=16&language=en-US&page=1",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=188770&page=1",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=257807&page=1",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=210024&page=2",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=210024&page=3",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=190098&page=1",
+              options
+            ),
+            // get horror movies
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=15284&page=2",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_keywords=251449&page=1",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_genres=16&language=en-US&page=2",
+              options
+            ),
+            fetch(
+              "https://api.themoviedb.org/3/discover/movie?api_key=1a05bd3a661c3ad18b28dfdde27416e8&with_genres=16&language=en-US&page=3",
+              options
+            ),
+          ]);
+
+          const [
+            data1,
+            data2,
+            data3,
+            data4,
+            data5,
+            data6,
+            data7,
+            data8,
+            data9,
+            data10,
+            data11,
+            data12,
+            data13,
+            data14,
+          ] = await Promise.all([
+            data1Res.json(),
+            data2Res.json(),
+            data3Res.json(),
+            data4Res.json(),
+            data5Res.json(),
+            data6Res.json(),
+            data7Res.json(),
+            data8Res.json(),
+            data9Res.json(),
+            data10Res.json(),
+            data11Res.json(),
+            data12Res.json(),
+            data13Res.json(),
+            data14Res.json(),
+          ]);
+
+          setData((prev) => [
+            ...prev,
+            ...data1.results,
+            ...data2.results,
+            ...data3.results,
+            ...data4.results,
+            ...data5.results,
+            ...data6.results,
+            ...data7.results,
+            ...data8.results,
+            ...data9.results,
+            ...data10.results,
+            ...data11.results,
+            ...data12.results,
+            ...data13.results,
+            ...data14.results,
+          ]);
+
+          console.log(data1)
+        } catch (error) {
+          console.error("Error fetching:", error);
+        } finally {
+          setLoading2(false);
+        }
+      };
+
+      getAllData();
+    }, []);
+
   useEffect(() => {
     dispatch(searchDataHandle(data));
+    console.log(data)
   }, [data]);
   //end
 
