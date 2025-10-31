@@ -36,6 +36,7 @@ import KidsCartoon from "../pages/MoviesShows/cartoon/categories/KidsCartoon";
 import SavedVideos from "../common/SavedVideo";
 import Account from "../pages/userAccount/Account";
 import { useSelector } from "react-redux";
+import SearchData from "../common/SearchData";
 
 function RoutesApp({ children }) {
   const {user} = useSelector(state => state.users)
@@ -83,6 +84,8 @@ function RoutesApp({ children }) {
         <Route path={"/Animations/cartoon/Cartoon Wolf"} element = {<CartoonWolf></CartoonWolf>}/>
         <Route path={"/Animations/cartoon/Cartoon Dog"} element = {<CartoonDog></CartoonDog>}/>
         <Route path={"/Animations/cartoon/Kids Cartoon"} element = {<KidsCartoon></KidsCartoon>}/>
+        {/* see all search data after search */}
+        <Route path="/search" element={<SearchData/>}/>
       </Routes>
     </>
   );

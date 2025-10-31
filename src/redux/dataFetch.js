@@ -35,8 +35,13 @@ const initialState = {
   /// track login and signup users
   users: {
     user: null,
-    loading: true
-  }
+    loading: true,
+  },
+  // search data from this data
+  dataForSearch: null,
+  // get search input data
+  mainSearchData: [],
+  searchingText: ''
 };
 
 export const movieSlice = createSlice({
@@ -136,7 +141,9 @@ export const movieSlice = createSlice({
       // console.log(actions.payload)
     },
     removeSavedMovies: (state, actions) => {
-      state.savedMovies = state.savedMovies.filter(({name, data}) => data.id !== actions.payload.data.id)
+      state.savedMovies = state.savedMovies.filter(
+        ({ name, data }) => data.id !== actions.payload.data.id
+      );
 
       console.log(actions.payload);
     },
@@ -158,15 +165,35 @@ export const movieSlice = createSlice({
     },
 
     /// signup users
-    userImport: (state, actions)=> {
-      state.users.user = actions.payload
-      console.log(actions.payload)
-      state.users.loading = false
+    userImport: (state, actions) => {
+      state.users.user = actions.payload;
+      console.log(actions.payload);
+      state.users.loading = false;
     },
-    cleanUser:(state, actions) => {
-      state.users.user = null,
-      state.users.loading = false
-    }
+    cleanUser: (state, actions) => {
+      (state.users.user = null), (state.users.loading = false);
+    },
+    // get search input data
+
+    // get 160 data for showing when user search
+    searchDataHandle: (state, actions) => {
+      // const searchFindData = actions.payload.find(({original_title}) => original_title.toLowerCase() === state.searchInputData.toLowerCase())
+      // console.log(actions.payload, state.searchInputData, searchFindData)
+      state.dataForSearch = actions.payload;
+    },
+    searchInputDataHandle: (state, actions) => {
+      if (actions.payload !== "") {
+        const afterFilter = state.dataForSearch.filter(({ original_title }) => {
+          return original_title
+            .toLowerCase()
+            .startsWith(actions.payload.toLowerCase());
+        });
+        state.mainSearchData = afterFilter;
+      }else{
+        state.mainSearchData = [];
+      }
+      state.searchingText = actions.payload;
+    },
   },
 });
 
@@ -203,7 +230,9 @@ export const {
   // track animation in playlistBox when you want to save
   newPlayListAnimeItem,
   userImport,
-  cleanUser
+  cleanUser,
+  searchDataHandle,
+  searchInputDataHandle,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
